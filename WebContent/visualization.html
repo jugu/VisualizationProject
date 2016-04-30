@@ -35,32 +35,100 @@
 	</nav>
 
 	<div id="filestatistics" style="display: none;"></div>
-	<div
-		style="width: 100px; float: right; margin-right: 10px; margin-top: 50px;">
-		<table>
-			<tr>
-				<td><input id="videoUploadView" type="button" width="100px"
-					height="46px" value="Videos Uploaded Trend" class='button'
-					style="display: block; margin: 0px 0px 10px 5px; padding-top: 15px; padding-bottom: 15px;"
-					onclick="assignViewId(1)" /></td>
-			</tr>
-		</table>
+	<div style="float: right; margin-right: 10px; margin-top: 50px;" id ="viewSelection">
+		<div><input id="V1" type="button"
+					height="30px" value="Videos Uploaded Trend" class='button'  title="videos uploaded trend"
+					style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+		</div>
+		<div><input id="V2" type="button" width="100px"
+					height="30px" value="Likes Per View" class='button'  title="Likes per view trend"
+					style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+		</div>
+		<div><input id="V3" type="button" width="100px"
+					height="30px" value="Likes/Dislikes" class='button' title="Likes vs Dislikes Correlation"
+					style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+		</div>
+		<div><input id="V4" type="button" width="100px"
+					height="30px" value="Comment Analysis" class='button'
+					style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+		</div>
+		<div><input id="V5" type="button" width="100px"
+					height="30px" value="TODO" class='button'
+					style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+		</div>
+		<div><input id="V6" type="button" width="100px"
+					height="30px" value="TODO" class='button'
+					style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+		</div>
+		<div><input id="V7" type="button" width="100px"
+					height="30px" value="TODO" class='button'
+					style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+		</div>
 	</div>
 	<div id="chart-container">
 		<!-- File contents -->
 		<div id="filecontents" class="mygrid-wrapper-div packets"
-			style="float: left; width: 25%; display: inline-block;">
-			<div>
-				Comedy
+			style="float: left; width: 20%; display: inline-block;">
+			<div><img src="images/Cinema-Comedy-icon.png" width="20px" height="20px"/>
+				<span id="COMEDY">Comedy</span>
 				<ul>
-					<li id="collegeHumor">CollegeHumor</li>
+					<li id="1">The Tonight Show Starring Jimmy Fallon</li>
+					<li id="2">CollegeHumor</li>
+					<li id="3">Jimmy Kimmel Live</li>
+					<li id="4">Just For Laughs Gags</li>
+					<li id="5">Comedy Central</li>
 				</ul>
 			</div>
-			<div>Education</div>
-			<div>Comedy</div>
-			<div>Comedy</div>
-			<div>Comedy</div>
-			<div>Comedy</div>
+			<div><img src="images/meczeee.png" width="20px" height="20px"/>
+				<span id="TRAVEL">Travel</span>
+				<ul>
+					<li id="6">FunForLouis</li>
+					<li id="7">BBC Earth</li>
+					<li id="8">Africa Travel Channel</li>
+					<li id="9">BBC Travel Show</li>
+					<li id="10">Samuel & Audrey</li>
+				</ul>
+			</div>
+			<div><img src="images/automobile.png" width="20px" height="20px"/>
+				<span id="AUTOMOBILES">Automobiles</span>
+				<ul>
+					<li id="11">Ferrari</li>
+					<li id="12">Mercedes-Benz</li>
+					<li id="13">Automobile Magazine</li>
+					<li id="14">Motor Trend Channel</li>
+					<li id="15">BMW</li>					
+				</ul>
+			</div>
+			<div><img src="images/music.jpg" width="20px" height="20px"/>
+				<span id="MUSIC">Music</span>
+				<ul>
+					<li id="16">JustinBieberVEVO</li>
+					<li id="17">RihannaVEVO</li>
+					<li id="18">OneDirectionVEVO</li>
+					<li id="19">TaylorSwiftVEVO</li>
+					<li id="20">KatyPerryVEVO</li>
+				</ul>
+			</div>
+			<div><img src="images/news.png" width="20px" height="20px"/>
+				<span id="NEWS">News</span>
+				<ul>
+					<li id="21">BBC News</li>
+					<li id="22">VICE News</li>
+					<li id="23">Sky News</li>
+					<li id="24">DNews</li>
+					<li id="25">Forbes</li>				
+				</ul>
+			</div>
+			<div><img src="images/education.png" width="20px" height="20px"/>
+				<span id="EDUCATION">Education</span>
+				<ul>
+					<li id="26">Google for Education</li>
+					<li id="27">Khan Academy</li>
+					<li id="28">Discovery Education</li>
+					<li id="29">TED-Ed</li>
+					<li id="30">SciShow</li>
+				</ul>
+			</div>
 		</div>
 		<div id="chart" class="center chart"
 			style="width: 60%; display: inline-block; margin-left: 20px;">
@@ -72,20 +140,10 @@
 		style="text-align: center; color: #5090A0; padding-top: 30px; font-size: 20px;"></div>
 	<script src="d3.min.js"></script>
 	<script src="bar.js"></script>
+	<script src="data.js"></script>
 	<script src="jquery.min.js"></script>
 	<script src="bootstrap.min.js"></script>
 	<script>
-		var viewId = 1
-		var category = "comedy"
-		var channel = "All"
-		function assignViewId(id) {
-			viewId = id;
-			controlChart(viewId, category, channel)
-		}
-		$("#collegeHumor").click(function() {
-			channel = "collegeHumor";
-			controlChart(viewId, category, channel)
-		});
 		function controlChart(viewid, category, channel) {
 			if (viewid == 1) {
 				populateChartHTMLUsingVenkyJSfileFunction();
@@ -94,6 +152,27 @@
 			}
 
 		}
+		$("#filecontents span").css("cursor","pointer")
+		$("#filecontents span").click(function(){
+			$("#filecontents span").css("backgroundColor","white")
+			$("#filecontents ul li").css("backgroundColor","white")
+			this.style.backgroundColor = '#ffa500'
+			controlChart()
+		})
+		$("#filecontents ul li").css("cursor","pointer")
+		$("#filecontents ul li").click(function(){
+			$("#filecontents span").css("backgroundColor","white")
+			$("#filecontents ul li").css("backgroundColor","white")
+			this.style.backgroundColor = '#ffa500'
+			controlChart()
+		})
+		
+		$("#filecontents ul li").click(function(){
+			$("#filecontents span").css("backgroundColor","white")
+			$("#filecontents ul li").css("backgroundColor","white")
+			this.style.backgroundColor = '#ffa500'
+			controlChart()
+		})
 	</script>
 </body>
 </html>
