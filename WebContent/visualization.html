@@ -139,6 +139,7 @@
 	<div id="xAxisText"
 		style="text-align: center; color: #5090A0; padding-top: 30px; font-size: 20px;"></div>
 	<script src="d3.min.js"></script>
+	<script src="videoupload.js"></script>
 	<script src="bar.js"></script>
 	<script src="data.js"></script>
 	<script src="jquery.min.js"></script>
@@ -177,7 +178,7 @@
 		}
 		function formatResult(respText)
 		{
-			document.getElementById("chart").innerHTML = respText;
+			videoCount(respText);
 		}
 	</script>
 </body>

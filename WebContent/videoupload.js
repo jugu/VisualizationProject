@@ -43,7 +43,7 @@ function videoupload() {
 
 	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr(
 			"transform", "rotate(-90)").attr("y", -50).attr("dy", ".71em")
-			.style("text-anchor", "end").text("PLT (ms)");
+			.style("text-anchor", "end").text("No of Videos");
 
 	svg.selectAll("bar").data(data).enter().append("rect").style("fill",
 			"steelblue").attr("x", function(d, i) {
@@ -90,7 +90,7 @@ function vupload(values) {
 
 	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr(
 			"transform", "rotate(-90)").attr("y", -50).attr("dy", ".71em")
-			.style("text-anchor", "end").text("PLT (ms)");
+			.style("text-anchor", "end").text("No of Videos");
 
 	svg.selectAll("bar").data(data).enter().append("rect").style("fill",
 			"steelblue").attr("x", function(d, i) {
@@ -204,8 +204,10 @@ function mpghist(csvdata) {
 			"rotate(-90)").style("text-anchor", "middle").text("# of fill-ups");
 }
 
-function videoCount() {
+function videoCount(respText) {
 	var json = '{"startdate": "2015-04-26 10:00:00","enddate": "2016-04-26 10:00:00","statistics": [{"timeframe": 30,"count": [10,8,30,15,10,8,30,15,10,8,30,15]},{"timeframe": 90,"count": [48,33,55,53]},{"timeframe": 180,"count": [81,108]}, {"timeframe": 365,"count": [189]}]}';
+	json = respText;
+	$("#chart").html("");
 	var obj = JSON.parse(json);
 	var monthly = [], quarterly = [], halfyearly = [], yearly = [], startdate = obj.startdate, enddate = obj.enddate, statistics = obj.statistics;
 	var stats;
@@ -226,7 +228,7 @@ function videoCount() {
 		right : 20,
 		bottom : 70,
 		left : 40
-	}, width = 400 - margin.left - margin.right, height = 450 - margin.top
+	}, width = 600 - margin.left - margin.right, height = 450 - margin.top
 			- margin.bottom;
 	var x = d3.scale.ordinal().rangeRoundBands([ 0, width ], .05);
 	var y = d3.scale.linear().range([ height, 0 ]);
@@ -248,26 +250,24 @@ function videoCount() {
 
 	svg.append("g").attr("class", "x axis").attr("transform",
 			"translate(0," + height + ")").call(xAxis).selectAll("text").style(
-			"text-anchor", "end").attr("dx", "-.8em").attr("dy", "-.55em")
-			.attr("transform", "rotate(-90)").text(function(d, i) {
+			"text-anchor", "end").style('margin-top','10px').attr("dx", "-.8em").attr("dy", "-.55em").text(function(d, i) {
 				return i;
 			});
 
 	svg.append("g").attr("class", "y axis").call(yAxis).append("text").attr(
 			"transform", "rotate(-90)").attr("y", -50).attr("dy", ".71em")
-			.style("text-anchor", "end").text("PLT (ms)");
+			.style("text-anchor", "end").text("No of Videos");
 
 	svg.selectAll("bar").data(monthly).enter().append("rect").style("fill",
 			"steelblue").attr("x", function(d, i) {
 		return x(i);
 	}).attr("width", x.rangeBand()).attr("y", function(d) {
-		return y(d);
-	}).attr("height", function(d) {
 		return height - y(d);
-	}).transition().duration(1000).delay(300).ease('elastic').attr('height',
-			function(d) {
-				return y(d.y);
-			}).attr('y', function(d) {
-		return height - y(d.y);
+	}).attr("height", 0).transition().duration(1000).delay(300).ease('elastic')
+	.attr('height', function(d) {
+		return height - y(d);
+	})
+	.attr('y', function(d) {
+		return y(d);
 	});
 }
