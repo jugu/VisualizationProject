@@ -144,45 +144,35 @@
 	<script src="jquery.min.js"></script>
 	<script src="bootstrap.min.js"></script>
 	<script>
-		function controlChart(viewid, category, channel) {
-			if (viewid == 1) {
-				populateChartHTMLUsingVenkyJSfileFunction();
-			} else if (viewId == 2) {
-				populateChartHTMLUsingJuguJSfileFunction();
-			}
-
-		}
+		var view = "V2";
+		var channel = "collegeHumor";
+		var category = "comedy";
 		$("#filecontents span").css("cursor","pointer")
 		$("#filecontents span").click(function(){
 			$("#filecontents span").css("backgroundColor","white")
 			$("#filecontents ul li").css("backgroundColor","white")
 			this.style.backgroundColor = '#ffa500'
-			controlChart()
+			channel = getChannel(this.id);
+			controlChart();
 		})
 		$("#filecontents ul li").css("cursor","pointer")
 		$("#filecontents ul li").click(function(){
 			$("#filecontents span").css("backgroundColor","white")
 			$("#filecontents ul li").css("backgroundColor","white")
 			this.style.backgroundColor = '#ffa500'
-			controlChart()
-		})
-		
-		$("#filecontents ul li").click(function(){
-			$("#filecontents span").css("backgroundColor","white")
-			$("#filecontents ul li").css("backgroundColor","white")
-			this.style.backgroundColor = '#ffa500'
-			controlChart()
+			channel = getChannel(this.id);
+			controlChart();
 		})
 		
 		function controlChart()
-		{
+		{			
 			var xhttp = new XMLHttpRequest();
 			xhttp.onreadystatechange = function() {
 			   if (xhttp.readyState == 4 && xhttp.status == 200) {
 				   	formatResult(xhttp.responseText);
 				}
 			};
-			xhttp.open("GET", "youtube?source=collegeHumor", true);
+			xhttp.open("GET", "youtube?source="+channel+"&view="+view+"&category="+category, true);
 			xhttp.send();
 		}
 		function formatResult(respText)

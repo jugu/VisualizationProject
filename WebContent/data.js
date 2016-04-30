@@ -40,11 +40,16 @@ var loadcsv = [
 {viewid: "V1", channelid: "1", csv:"V1_1.csv"},
 ];
 
-function getChannel()
+function getView()
+{
+	
+}
+
+function getChannel(id)
 {
 	for (var i = 0; i < panel.length; i++)
 	{
-		if (panel[i].id == this.id)
+		if (panel[i].id == id)
 		{
 			return panel[i].channel
 		}

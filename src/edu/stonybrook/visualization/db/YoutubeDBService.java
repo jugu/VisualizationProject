@@ -3,6 +3,7 @@ package edu.stonybrook.visualization.db;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.google.gson.JsonArray;
@@ -48,11 +49,13 @@ public class YoutubeDBService {
 		{
 			Date minDate = getMinDateForChannelVideos(channelTitle);
 			String s = " select (view_count)/like_Count as VPL, date(published_at) as publishedat, "
-					 + " date('2006-10-23') as channeldate, "
-					 + " DATEDIFF(date(published_at),date('2006-10-23')) as daysFromStart "
-					 + " from video where channel_title  = ?";
+					 + " ? as channeldate, "
+					 + " DATEDIFF(date(published_at),?) as daysFromStart "
+					 + " from video where channel_title  = ? order by publishedat";
 			pstmt = dbConn.prepareStatement(s);
-			pstmt.setString(1, channelTitle);
+			pstmt.setDate(1, new java.sql.Date(minDate.getTime()));
+			pstmt.setDate(2, new java.sql.Date(minDate.getTime()));
+			pstmt.setString(3, channelTitle);
 			rS = pstmt.executeQuery();
 			JsonObject js = new JsonObject();
 			JsonArray jsArr = new JsonArray();
@@ -60,11 +63,10 @@ public class YoutubeDBService {
 			{
 				js = new JsonObject();
 				js.addProperty("value", rS.getInt("VPL"));
+				js.addProperty("published", new SimpleDateFormat("yyyy-MM-dd").format(rS.getDate("publishedat")));
+				js.addProperty("channeldate", new SimpleDateFormat("yyyy-MM-dd").format(rS.getDate("channeldate")));
 				js.addProperty("daysfromstart", rS.getInt("daysFromStart"));
 				jsArr.add(js);
-				result += rS.getInt("VPL") + "," + rS.getDate("publishedat") 
-				          + "," + rS.getDate("channeldate") + "," 
-						  + "," + rS.getInt("daysFromStart") + "";
 			}
 			result = jsArr.toString();
 		}
