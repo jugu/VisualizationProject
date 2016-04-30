@@ -31,10 +31,10 @@ public class YoutubeServlet extends HttpServlet {
 		doPost(request, response);
 	}
 	
-	private String processRequest (String viewId, String sourceId, String categoryId)
+	private String processRequest (String view, String source, String category)
 	{
 		YoutubeDBService dbService = new YoutubeDBService();
-		return dbService.getVideosPerLike();
+		return dbService.getViewsPerLike(source);
 	}
 
 	/**
@@ -42,9 +42,9 @@ public class YoutubeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String viewId =  request.getParameter("viewid");
-		String sourceId  = request.getParameter("sourceid");
-		String categoryId  = request.getParameter("categoryid");
+		String viewId =  request.getParameter("view");
+		String sourceId  = request.getParameter("source");
+		String categoryId  = request.getParameter("category");
 		String output = processRequest(viewId, sourceId, categoryId);
 		PrintWriter pw = response.getWriter();
 		pw.write(output);

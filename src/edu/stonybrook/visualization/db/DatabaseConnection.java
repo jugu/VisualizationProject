@@ -12,7 +12,7 @@ public class DatabaseConnection {
 		try {
 			String myDriver = "com.mysql.jdbc.Driver";
 			//String myUrl = "jdbc:mysql://130.245.101.3:3306/ADE";
-			String myUrl = "jdbc:mysql://127.0.0.1:3306/youtube";
+			String myUrl = "jdbc:mysql://127.0.0.1:3306/visualization";
 			Class.forName(myDriver);
 			conn = DriverManager.getConnection(myUrl, "root", "admin");
 		}

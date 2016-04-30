@@ -173,6 +173,22 @@
 			this.style.backgroundColor = '#ffa500'
 			controlChart()
 		})
+		
+		function controlChart()
+		{
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function() {
+			   if (xhttp.readyState == 4 && xhttp.status == 200) {
+				   	formatResult(xhttp.responseText);
+				}
+			};
+			xhttp.open("GET", "youtube?source=collegeHumor", true);
+			xhttp.send();
+		}
+		function formatResult(respText)
+		{
+			document.getElementById("chart").innerHTML = respText;
+		}
 	</script>
 </body>
 </html>

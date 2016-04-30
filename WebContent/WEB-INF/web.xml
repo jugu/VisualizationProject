@@ -6,7 +6,7 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>YoutubeServlet</servlet-name>
-    <servlet-class>com.ade.servlet.YoutubeServlet</servlet-class>
+    <servlet-class>edu.stonybrook.visualization.servlet.YoutubeServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>YoutubeServlet</servlet-name>
