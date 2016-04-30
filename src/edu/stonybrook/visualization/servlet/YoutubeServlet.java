@@ -34,7 +34,14 @@ public class YoutubeServlet extends HttpServlet {
 	private String processRequest (String view, String source, String category)
 	{
 		YoutubeDBService dbService = new YoutubeDBService();
-		return dbService.getViewsPerLike(source);
+		boolean checkAcrossCategory = false;
+		if (source.equals(category))
+			checkAcrossCategory = true;
+		if ("V1".equals(view))
+			return dbService.getVideosUploadedOverTime(source, checkAcrossCategory);
+		else if ("V2".equals(view))
+			return dbService.getViewsPerLike(source, checkAcrossCategory);
+		return dbService.getViewsPerLike(source, checkAcrossCategory);
 	}
 
 	/**
