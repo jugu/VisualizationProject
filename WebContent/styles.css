@@ -137,3 +137,18 @@ path {
 	font-size: 11px;
 	font-style: bold;
 }
+
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: black;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
+
+.timeframe{
+	width:100%;
+	display:block;
+}
