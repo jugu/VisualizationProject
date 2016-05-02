@@ -87,8 +87,8 @@ function videoCount(respText) {
 
 function drawVideoCountGraph() {
 	$("#chart").html("");
-	$("#trendFrame").css('display','none');
-	$("#divTimeFrame").css('display',"block");
+	$("#trendFrame").css('display', 'none');
+	$("#divTimeFrame").css('display', "block");
 	var margin = {
 		top : 20,
 		right : 20,
@@ -114,10 +114,19 @@ function drawVideoCountGraph() {
 		return d;
 	}) ]);
 
+	var tip = d3.tip().attr('class', 'd3-tip').offset([ -10, 0 ]).html(
+			function(d) {
+				return "<strong>Videos:</strong> <span style='color:red'>" + d
+						+ "</span>";
+
+			});
+	svg.call(tip);
+
 	svg.append("g").attr("class", "x axis").attr("transform",
 			"translate(0," + height + ")").call(xAxis).selectAll("text").style(
-			"text-anchor", "end").style('margin-top','10px').attr("transform",
-			"rotate(-45)").attr("dx", "-.8em").attr("dy", "-.55em").text(function(d, i) {
+			"text-anchor", "end").style('margin-top', '10px').attr("transform",
+			"rotate(-45)").attr("dx", "-.8em").attr("dy", "-.55em").text(
+			function(d, i) {
 				return addDays(startdate, i * getTimePeriodValue(period));
 			});
 
@@ -130,11 +139,17 @@ function drawVideoCountGraph() {
 		return x(i);
 	}).attr("width", x.rangeBand()).attr("y", function(d) {
 		return height - y(d);
-	}).attr("height", 0).transition().duration(1000).delay(300).ease('elastic')
-	.attr('height', function(d) {
-		return height - y(d);
-	})
-	.attr('y', function(d) {
+	}).attr("height", 0).on('mouseover', function(d) {
+		tip.show(d);
+		d3.select(this).style('fill', "#e6b000");
+	}).on('mouseout', function(d) {
+		tip.hide(d);
+		d3.select(this).style('fill', 'steelblue');
+	}).transition().duration(1000).delay(300).ease('elastic').attr('height',
+			function(d) {
+				return height - y(d);
+			}).attr('y', function(d) {
 		return y(d);
 	});
+
 }
