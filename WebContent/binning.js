@@ -20,15 +20,46 @@ function channelTrend(obj)
 	}
 	else
 	{
-		loadChannelView(data.statistics, selectedTrend);
+		resetbuttons(selectedTrend);
+		if (selectedTrend == 'Video Quality')
+			quadrantchart(data.statistics);
+		else
+		{
+			loadChannelView(data.statistics, selectedTrend);
+		}
 	}
+}
+
+function resetbuttons(selView)
+{
+	$("#trendFrame").css('display','block');
+	$("#trendFrame input").css('backgroundColor', 'white');
+	if (selView == 'views')
+		$("#viewtrend").css('backgroundColor', '#ffa500');
+	if (selView == 'likes')
+		$("#liketrend").css('backgroundColor', '#ffa500');
+	if (selView == 'dislikes')
+		$("#disliketrend").css('backgroundColor', '#ffa500');
+	if (selView == 'views per like')
+		$("#viewsperliketrend").css('backgroundColor', '#ffa500');
+	if (selView == 'likes per dislike')
+		$("#likesperdisliketrend").css('backgroundColor', '#ffa500');
+	if (selView == 'duration')
+		$("#durationtrend").css('backgroundColor', '#ffa500');
+	if (selView == 'Video Quality')
+		$("#videoquality").css('backgroundColor', '#ffa500');
 }
 
 function process(view)
 {
 	selectedTrend = view;
-	loadChannelView(data.statistics, view);
+	resetbuttons(selectedTrend);
+	if (view == 'Video Quality')
+		quadrantchart(data.statistics);
+	else
+		loadChannelView(data.statistics, view);
 }
+
 
 var legendFilterChannel = {
 		"views":{"val":true,"cls":"showlegend"},
@@ -36,6 +67,50 @@ var legendFilterChannel = {
 		"dislikes":{"val":true,"cls":"showlegend"},
 		"comments":{"val":true,"cls":"showlegend"},
 		"date":{"val":true,"cls":"showlegend"},
+}
+
+function quadrantchart(dataoriginal)
+{
+	var parseDate = d3.time.format("%Y-%m-%d").parse;	
+	var setup= {};
+	setup.width=$("#chart").width();
+	setup.height=500;
+	setup.dotRadius=4;
+	setup.xlabel = 'Likes per Dislike'
+	setup.ylabel = 'Views per Like'
+	$("#chart").html('');
+	var data = jQuery.extend(true, [], dataoriginal);
+	var totalA = 0
+	var totalB = 0
+	var valid = 0
+	var dataarray = []
+	data.forEach(function(d) {
+	    d.date = parseDate(d.videodate);
+	    if (d.likes > 0)
+	    	d['views per like'] = d.views/d.likes;
+	    else
+	    	d['views per like'] = 0;
+	    if (d.dislikes > 0)
+	    	d['likes per dislike'] = d.likes/d.dislikes;
+	    else
+	    	d['likes per dislike'] = 0;
+	});
+	for (var i = 0; i < data.length; i++)
+	{
+		if (data[i]['likes'] > 0 && data[i]['dislikes'] > 0)
+		{
+			totalA += data[i]['likes per dislike']
+			totalB += data[i]['views per like']
+			valid++;
+			dataarray.push({"label":data[i]['videotitle'],"x":data[i]['likes per dislike'], "y":data[i]['views per like'], 'Z':data[i]['videotitle']})
+		}
+	}
+	var likeDislikeRatio = Math.round(totalA/valid);
+	var viewLikeRatio =Math.round(totalB/valid);
+	setup.quadrantxaxis = likeDislikeRatio
+	setup.quadrantyaxis = viewLikeRatio;
+	setup.quadrantaxiscolor = 'blue'
+	createQuadrantChart('chart', dataarray, setup)
 }
 
 function loadChannelViewBetter(dataoriginal)
@@ -137,20 +212,6 @@ function width(margin) {
 
 function loadChannelView(dataoriginal, selView)
 {
-	$("#trendFrame").css('display','block');
-	$("#trendFrame input").css('backgroundColor', 'white');
-	if (selView == 'views')
-		$("#viewtrend").css('backgroundColor', '#ffa500');
-	if (selView == 'likes')
-		$("#liketrend").css('backgroundColor', '#ffa500');
-	if (selView == 'dislikes')
-		$("#disliketrend").css('backgroundColor', '#ffa500');
-	if (selView == 'views per like')
-		$("#viewsperliketrend").css('backgroundColor', '#ffa500');
-	if (selView == 'likes per dislike')
-		$("#likesperdisliketrend").css('backgroundColor', '#ffa500');
-	if (selView == 'duration')
-		$("#durationtrend").css('backgroundColor', '#ffa500');
 	var data = jQuery.extend(true, [], dataoriginal);	
 	$("#chart").html("");
 	var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -176,7 +237,6 @@ function loadChannelView(dataoriginal, selView)
 	    	 .append("g")
 	    	 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	var parseDate = d3.time.format("%Y-%m-%d").parse;
 	var bisectDate = d3.bisector(function(d) { return d.date; }).left;
 	var x = d3.time.scale()
 	    .range([0, width]);
@@ -202,7 +262,7 @@ function loadChannelView(dataoriginal, selView)
 
 	//color.domain(d3.keys(data[0]).filter(function(key) { return key !== "date"; }));
 	color.domain([selView])
-
+	var parseDate = d3.time.format("%Y-%m-%d").parse;
 	data.forEach(function(d) {
 	    d.date = parseDate(d.videodate);
 	    if (d.likes > 0)
@@ -213,7 +273,8 @@ function loadChannelView(dataoriginal, selView)
 	    	d['likes per dislike'] = d.likes/d.dislikes;
 	    else
 	    	d['likes per dislike'] = 0;
-	});
+	});	
+	
 	if (selView == 'likes per dislike' || selView == 'views per like' || selView == 'duration')
 	{
 		var totalA = 0
