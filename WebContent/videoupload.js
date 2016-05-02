@@ -11,24 +11,32 @@ function addDays(date, days) {
 }
 
 function monthlyTimePeriodClick() {
+	$("#divTimeFrame input").css('background-color', 'white')
+	$('#monthlyButton').css('background-color', '#ffa500')
 	period = MONTHLY_PERIOD;
 	assignData();
 	drawVideoCountGraph();
 }
 
 function quarterlyTimePeriodClick() {
+	$("#divTimeFrame input").css('background-color', 'white')
+	$('#quarterlyButton').css('background-color', '#ffa500')
 	period = QUARTERLY_PERIOD;
 	assignData();
 	drawVideoCountGraph();
 }
 
 function halfYearlyTimePeriodClick() {
+	$("#divTimeFrame input").css('background-color', 'white')
+	$('#halfyearlyButton').css('background-color', '#ffa500')
 	period = HALF_YEARLY_PERIOD;
 	assignData();
 	drawVideoCountGraph();
 }
 
 function yearlyTimePeriodClick() {
+	$("#divTimeFrame input").css('background-color', 'white')
+	$('#yearlyButton').css('background-color', '#ffa500')
 	period = YEARLY_PERIOD
 	assignData();
 	drawVideoCountGraph();
@@ -79,6 +87,8 @@ function videoCount(respText) {
 
 function drawVideoCountGraph() {
 	$("#chart").html("");
+	$("#trendFrame").css('display','none');
+	$("#divTimeFrame").css('display',"block");
 	var margin = {
 		top : 20,
 		right : 20,

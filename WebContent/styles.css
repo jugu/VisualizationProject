@@ -152,3 +152,14 @@ path {
 	width:100%;
 	display:block;
 }
+
+.unselectlegend{
+	font-color:red;
+	opacity:0.5;
+	cursor:pointer;
+}
+.showlegend{
+	font-color:black;
+	opacity:1;
+	cursor:pointer;
+}

@@ -9,6 +9,7 @@
 <title>Youtube Video Statistics</title>
 <link href="bootstrap.min.css" rel="stylesheet">
 <link href="styles.css" rel="stylesheet">
+<link href="css/d3.css" rel="stylesheet">
 </head>
 <body bgcolor="#EFEFEF">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -32,40 +33,22 @@
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-
-	<div id="filestatistics" style="display: none;"></div>
 	<div style="float: right; margin-right: 10px; margin-top: 50px;"
 		id="viewSelection">
 		<div>
 			<input id="V1" type="button" height="30px"
 				value="Videos Uploaded Trend" class='button'
 				title="videos uploaded trend"
-				style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;" />
+				style="background-color:#ffa500;display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;" />
 		</div>
 		<div>
 			<input id="V2" type="button" width="100px" height="30px"
-				value="Likes Per View" class='button' title="Likes per view trend"
-				style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;" />
-		</div>
-		<div>
-			<input id="V3" type="button" width="100px" height="30px"
-				value="Likes/Dislikes" class='button'
-				title="Likes vs Dislikes Correlation"
+				value="Channel trends" class='button' title="Channel trends"
 				style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;" />
 		</div>
 		<div>
 			<input id="V4" type="button" width="100px" height="30px"
 				value="Comment Analysis" class='button'
-				style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;" />
-		</div>
-		<div>
-			<input id="V5" type="button" width="100px" height="30px" value="TODO"
-				class='button'
-				style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;" />
-		</div>
-		<div>
-			<input id="V6" type="button" width="100px" height="30px" value="TODO"
-				class='button'
 				style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;" />
 		</div>
 		<div>
@@ -80,9 +63,9 @@
 			style="float: left; width: 20%; display: inline-block;">
 			<div>
 				<img src="images/Cinema-Comedy-icon.png" width="20px" height="20px" />
-				<span id="COMEDY">Comedy</span>
+				<span id="comedy">Comedy</span>
 				<ul>
-					<li id="1">The Tonight Show Starring Jimmy Fallon</li>
+					<li id="1" style='background-color:#ffa500;'>The Tonight Show Starring Jimmy Fallon</li>
 					<li id="2">CollegeHumor</li>
 					<li id="3">Jimmy Kimmel Live</li>
 					<li id="4">Just For Laughs Gags</li>
@@ -91,7 +74,7 @@
 			</div>
 			<div>
 				<img src="images/meczeee.png" width="20px" height="20px" /> <span
-					id="TRAVEL">Travel</span>
+					id="travel">Travel</span>
 				<ul>
 					<li id="6">FunForLouis</li>
 					<li id="7">BBC Earth</li>
@@ -102,7 +85,7 @@
 			</div>
 			<div>
 				<img src="images/automobile.png" width="20px" height="20px" /> <span
-					id="AUTOMOBILES">Automobiles</span>
+					id="automobiles">Automobiles</span>
 				<ul>
 					<li id="11">Ferrari</li>
 					<li id="12">Mercedes-Benz</li>
@@ -113,7 +96,7 @@
 			</div>
 			<div>
 				<img src="images/music.jpg" width="20px" height="20px" /> <span
-					id="MUSIC">Music</span>
+					id="music">Music</span>
 				<ul>
 					<li id="16">JustinBieberVEVO</li>
 					<li id="17">RihannaVEVO</li>
@@ -124,7 +107,7 @@
 			</div>
 			<div>
 				<img src="images/news.png" width="20px" height="20px" /> <span
-					id="NEWS">News</span>
+					id="news">News</span>
 				<ul>
 					<li id="21">BBC News</li>
 					<li id="22">VICE News</li>
@@ -135,7 +118,7 @@
 			</div>
 			<div>
 				<img src="images/education.png" width="20px" height="20px" /> <span
-					id="EDUCATION">Education</span>
+					id="education">Education</span>
 				<ul>
 					<li id="26">Google for Education</li>
 					<li id="27">Khan Academy</li>
@@ -148,47 +131,83 @@
 		<div id="chartContainer" class="center chart"
 			style="width: 60%; display: inline-block; margin-left: 20px;">
 
-			<div id="divTimeFrame" class="timeframe">
+			<div id="divTimeFrame" class="timeframe" style='display:block'>
 				<input id="monthlyButton" type="button" height="30px"
 					value="Monthly" class="button" title="Monthly"
-					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
-					onclick="monthlyTimePeriodClick()" /> <input id="quarterlyButton"
+					style="background-color:#ffa500;margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					onclick="monthlyTimePeriodClick()" /> 
+				<input id="quarterlyButton"
 					type="button" height="30px" value="Quarterly" class="button"
 					title="Quarterly"
 					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
-					onclick="quarterlyTimePeriodClick()" /> <input
+					onclick="quarterlyTimePeriodClick()" /> 
+				<input
 					id="halfyearlyButton" type="button" height="30px"
 					value="Half Yearly" class="button" title="Half Yearly"
 					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
-					onclick="halfYearlyTimePeriodClick()" /> <input id="yearlyButton"
+					onclick="halfYearlyTimePeriodClick()" /> 
+				<input id="yearlyButton"
 					type="button" height="30px" value="Yearly" class="button"
 					title="Half Yearly"
 					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="yearlyTimePeriodClick()" />
+			</div>
+			<div id="trendFrame" class="timeframe" style='display:none'>
+				<input id="viewtrend" type="button" height="30px"
+					value="views" class="button" title="Views"
+					style="background-color:#ffa500;margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					onclick="process('views')" /> 
+				<input id="liketrend"
+					type="button" height="30px" value="likes" class="button"
+					title="Likes"
+					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					onclick="process('likes')" /> 
+				<input
+					id="disliketrend" type="button" height="30px"
+					value="dislikes" class="button" title="dislikes"
+					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					onclick="process('dislikes')" /> 
+				<input id="likesperdisliketrend"
+					type="button" height="30px" value="likes per dislike" class="button"
+					title="like per dislike"
+					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					onclick="process('likes per dislike')" />
+				<input id="viewsperliketrend"
+					type="button" height="30px" value="views per like" class="button"
+					title="views per like"
+					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					onclick="process('views per like')" />
 			</div>
 			<div id="chart"></div>
 		</div>
 	</div>
 	<div id="xAxisText"
 		style="text-align: center; color: #5090A0; padding-top: 30px; font-size: 20px;"></div>
-	<script src="d3.min.js"></script>
-	<script src="videoupload.js"></script>
-	<script src="bar.js"></script>
-	<script src="data.js"></script>
 	<script src="jquery.min.js"></script>
 	<script src="bootstrap.min.js"></script>
+	<script src="d3.min.js"></script>
+	<script src="scripts/nvtooltip.js"></script>
+	<script src="scripts/d3legend.js"></script> 
+	<script src="scripts/d3line.js"></script> 
+	<script src="scripts/d3linewithlegend.js"></script> 		
+	<script src="data.js"></script>
+	<script src="bar.js"></script>
+	<script src="videoupload.js"></script>
+	<script src="binning.js"></script>	
 	<script>
 		var view = "V1";
-		var channel = "collegeHumor";
+		var channel = "The Tonight Show Starring Jimmy Fallon";
 		var category = "comedy";
+		controlChart();
 		$("#filecontents span").css("cursor", "pointer")
 		$("#filecontents span").click(function() {
 			$("#filecontents span").css("backgroundColor", "white")
 			$("#filecontents ul li").css("backgroundColor", "white")
 			this.style.backgroundColor = '#ffa500'
-			channel = getChannel(this.id);
+			category = this.id
+			channel = category;
 			controlChart();
-		})
+		});
 		$("#filecontents ul li").css("cursor", "pointer")
 		$("#filecontents ul li").click(function() {
 			$("#filecontents span").css("backgroundColor", "white")
@@ -196,7 +215,14 @@
 			this.style.backgroundColor = '#ffa500'
 			channel = getChannel(this.id);
 			controlChart();
-		})
+		});
+		
+		$("#viewSelection input").click(function(){
+			$("#viewSelection input").css("backgroundColor", "white")
+			$(this).css("backgroundColor", "#ffa500")
+			view = this.id;
+			controlChart();
+		});
 
 		function controlChart() {
 			var xhttp = new XMLHttpRequest();
@@ -205,12 +231,15 @@
 					formatResult(xhttp.responseText);
 				}
 			};
-			xhttp.open("GET", "youtube?source=" + channel + "&view=" + view
+			xhttp.open("GET", "youtube?source=" + escape(channel) + "&view=" + view
 					+ "&category=" + category, true);
 			xhttp.send();
 		}
 		function formatResult(respText) {
-			videoCount(respText);
+			if (view == 'V1')
+				videoCount(respText);
+			else if (view == 'V2')
+				channelTrend(respText);
 		}
 	</script>
 </body>

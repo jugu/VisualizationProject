@@ -38,10 +38,10 @@ public class YoutubeServlet extends HttpServlet {
 		if (source.equals(category))
 			checkAcrossCategory = true;
 		if ("V1".equals(view))
-			return dbService.getVideosUploadedOverTime(source, checkAcrossCategory);
+			return dbService.getVideosUploadedOverTime(source, category, checkAcrossCategory);
 		else if ("V2".equals(view))
-			return dbService.getViewsPerLike(source, checkAcrossCategory);
-		return dbService.getViewsPerLike(source, checkAcrossCategory);
+			return dbService.getChannelTrend(source, category, checkAcrossCategory);
+		return dbService.getViewsPerLike(source, category, checkAcrossCategory);
 	}
 
 	/**

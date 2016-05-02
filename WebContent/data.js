@@ -162,9 +162,9 @@ function getChannel(id) {
 	return panel[0].channel;
 }
 
-function getCategory() {
+function getCategory(id) {
 	for (var i = 0; i < panel.length; i++) {
-		if (panel[i].id == this.id) {
+		if (panel[i].category == id) {
 			return panel[i].category
 		}
 	}
