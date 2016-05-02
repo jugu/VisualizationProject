@@ -1,3 +1,4 @@
+var selectedTrend = 'views'
 function channelTrend(obj)
 {
 	$("#divTimeFrame").css('display',"none");
@@ -19,12 +20,13 @@ function channelTrend(obj)
 	}
 	else
 	{
-		loadChannelView(data.statistics, 'views');
+		loadChannelView(data.statistics, selectedTrend);
 	}
 }
 
 function process(view)
 {
+	selectedTrend = view;
 	loadChannelView(data.statistics, view);
 }
 
@@ -147,6 +149,8 @@ function loadChannelView(dataoriginal, selView)
 		$("#viewsperliketrend").css('backgroundColor', '#ffa500');
 	if (selView == 'likes per dislike')
 		$("#likesperdisliketrend").css('backgroundColor', '#ffa500');
+	if (selView == 'duration')
+		$("#durationtrend").css('backgroundColor', '#ffa500');
 	var data = jQuery.extend(true, [], dataoriginal);	
 	$("#chart").html("");
 	var margin = {top: 20, right: 20, bottom: 30, left: 40},
@@ -210,7 +214,36 @@ function loadChannelView(dataoriginal, selView)
 	    else
 	    	d['likes per dislike'] = 0;
 	});
-
+	if (selView == 'likes per dislike' || selView == 'views per like' || selView == 'duration')
+	{
+		var totalA = 0
+		var totalB = 0
+		var valid = 0
+		var totalC = 0;
+		for (var i = 0; i < data.length; i++)
+		{
+			if (data[i]['likes'] > 0 && data[i]['dislikes'] > 0)
+			{
+				totalA += data[i]['likes per dislike']
+				totalB += data[i]['views per like']
+				valid++;
+			}
+			totalC += data[i]['duration']
+		}
+		var likeDislikeRatio = Math.round(totalA/valid);
+		var viewLikeRatio =Math.round(totalB/valid);
+		var dura = Math.round(totalC/data.length);
+		if (selView == 'likes per dislike' )
+			$("#ratio").html('Average Ratio : ' +likeDislikeRatio);
+		else if (selView == 'views per like' )
+			$("#ratio").html('Average Ratio : ' +viewLikeRatio);
+		else
+			$("#ratio").html('Average video duration : '  + dura + ' seconds');
+	}
+	else {
+		$("#ratio").html('');
+	}
+	
 	  var variations = color.domain().map(function(name) {
 	    return {
 	      name: name,
