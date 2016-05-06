@@ -74,7 +74,7 @@ public class YoutubeDBService {
 			{
 				List<Date> minmaxDateList = getMinMaxDateForChannelVideos(channelTitle);
 				Date minDate = minmaxDateList.get(0);
-				String s = " select video_title, view_count, like_count, dislike_count, comment_count, published_at, duration ";
+				String s = " select video_title, view_count, like_count, dislike_count, comment_count, published_at, duration, url ";
 					s += " from video where channel_title = ? ORDER BY PUBLISHED_AT";
 				pstmt = dbConn.prepareStatement(s);
 				pstmt.setString(1, channelTitle);
@@ -91,6 +91,7 @@ public class YoutubeDBService {
 					js.put("duration", getDuration(rS.getString("DURATION")));
 					js.put("videodate", new SimpleDateFormat("yyyy-MM-dd").format(rS.getDate("published_at")));
 					js.put("startdate", new SimpleDateFormat("yyyy-MM-dd").format(minDate));
+					js.put("videourl", rS.getString("url"));
 					int daydiff = (int)((rS.getDate("published_at").getTime() - minDate.getTime())/(1000L*60*60*24));
 					js.put("daydiff", daydiff);
 					jsArray.put(js);
@@ -272,26 +273,34 @@ public class YoutubeDBService {
 	
 	private int getDuration(String str)
 	{
-		str = str.substring(2);
+		int duration = 0;
 		int hour  = 0;
 		int minute = 0;
-		if (str.indexOf("H") >= 0)
-		{
-			hour = Integer.parseInt(str.split("H")[0]);
-			if (str.split("H").length > 1)
-				str = str.split("H")[1];
-		}
-		if (str.indexOf("M") >= 0)
-		{
-			minute = Integer.parseInt(str.split("M")[0]);
-			if (str.split("M").length > 1)
-				str = str.split("M")[1];
-		}
 		int second = 0;
-		if (str.indexOf("S") >= 0)
+		try {
+			duration = Integer.parseInt(str);
+			return duration;
+		}
+		catch (Exception e)
 		{
-			second = Integer.parseInt(str.split("S")[0]);
-		}	
+			str = str.substring(2);
+			if (str.indexOf("H") >= 0)
+			{
+				hour = Integer.parseInt(str.split("H")[0]);
+				if (str.split("H").length > 1)
+					str = str.split("H")[1];
+			}
+			if (str.indexOf("M") >= 0)
+			{
+				minute = Integer.parseInt(str.split("M")[0]);
+				if (str.split("M").length > 1)
+					str = str.split("M")[1];
+			}
+			if (str.indexOf("S") >= 0)
+			{
+				second = Integer.parseInt(str.split("S")[0]);
+			}
+		}
 		return hour*60*60 + minute*60 + second;
 	}
 	

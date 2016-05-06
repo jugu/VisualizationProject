@@ -74,7 +74,6 @@ function d3LineWithLegend() {
         selection.transition().call(chart)
       });
 
-
       lines.dispatch.on('pointMouseover.tooltip', function(e) {
         dispatch.showTooltip({
           point: e.point,

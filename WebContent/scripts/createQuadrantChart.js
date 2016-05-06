@@ -246,12 +246,23 @@ items.append("circle")
   }
 
 }, 'stroke': dotstroke, 'stroke-width': dotstrokewidth})
-  .append("svg:title")
-   .text(function(d) { 
-  var xformatter=d3.format(xtype); 
-  var yformatter=d3.format(ytype); 
-  var zformatter=d3.format(ztype); 
-  return d.label+"\nX = "+xformatter(d.x)+"\nY = "+yformatter(d.y); 
+// .append("svg:title")
+//  .text(function(d) { 
+//  var xformatter=d3.format(xtype); 
+//  var yformatter=d3.format(ytype); 
+//  var zformatter=d3.format(ztype); 
+  //return d.label+"\nX = "+xformatter(d.x)+"\nY = "+yformatter(d.y);
+//  
+//})
+.on('mouseover', function (d) {
+	 var offset = $('#chart').offset(), // { left: 0, top: 0 }
+     left = x(d.x) + offset.left,
+     top = y(d.y) + offset.top;
+	 var content =  '<iframe id="video" width="400" height="200" src="https://www.youtube.com/embed/'+d.url+'?autoplay=1" frameborder="0"></iframe>'
+	nvtooltip.show([left, top], content);
+}).on('mouseout', function (d) {
+	stopVideo($('#video'));
+	nvtooltip.cleanup();
 });
 
     
