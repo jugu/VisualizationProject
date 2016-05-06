@@ -14,7 +14,7 @@ public class DatabaseConnection {
 			//String myUrl = "jdbc:mysql://130.245.101.3:3306/ADE";
 			String myUrl = "jdbc:mysql://127.0.0.1:3306/visualization";
 			Class.forName(myDriver);
-			conn = DriverManager.getConnection(myUrl, "root", "admin");
+			conn = DriverManager.getConnection(myUrl, "root", "pass4root");
 		}
 		catch (Exception e)
 		{
