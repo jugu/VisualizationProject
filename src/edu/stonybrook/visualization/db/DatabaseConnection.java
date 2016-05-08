@@ -3,7 +3,8 @@ package edu.stonybrook.visualization.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+//String myUrl = "jdbc:mysql://130.245.101.3:3306/ADE";
+// TODO Auto-generated catch block
 public class DatabaseConnection {
 
 	private static Connection conn = null;

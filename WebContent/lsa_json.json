@@ -1,0 +1,292 @@
+{
+  "name": "bubble",
+  "children": [
+    {
+      "name": "comedy",
+      "description": "Atlas of Global Agriculture",
+      "children": [
+        {
+          "name": "jimmy",
+          "address": "http://gli.environment.umn.edu",
+          "note": "Global crop geography, including precipitation, temperature, crop area, etc."
+        },
+        {
+          "name": "fallon",
+          "address": "http://d3js.org"
+        },
+        {
+          "name": "just",
+          "address": "http://environment.umn.edu",
+          "note": "Maize, wheat, rice, and soybean yields in 2000"
+        },
+        {
+          "name": "laughs",
+          "address": "http://environment.umn.edu",
+          "note": "Maize, wheat, rice, and soybean yields in 2000"
+        },
+        {
+          "name": "camera",
+          "address": "http://environment.umn.edu",
+          "note": "Maize, wheat, rice, and soybean yields in 2000"
+        },
+        {
+          "name": "stand",
+          "address": "http://environment.umn.edu",
+          "note": "Maize, wheat, rice, and soybean yields in 2000"
+        },
+        {
+          "name": "tonight",
+          "address": "http://environment.umn.edu",
+          "note": "Maize, wheat, rice, and soybean yields in 2000"
+        },
+        {
+          "name": "videos",
+          "address": "http://environment.umn.edu",
+          "note": "Maize, wheat, rice, and soybean yields in 2000"
+        },
+        {
+          "name": "joke",
+          "address": "http://environment.umn.edu",
+          "note": "Maize, wheat, rice, and soybean yields in 2000"
+        },
+        {
+          "name": "practical",
+          "address": "http://environment.umn.edu",
+          "note": "Maize, wheat, rice, and soybean yields in 2000"
+        }
+      ]
+    },
+    {
+      "name": "travel",
+      "description": "Virtual Lab of Global Agriculture",
+      "children": [
+        {
+          "name": "bbc",
+          "address": "http://d3js.org",
+          "note": "Prototype Infographics on Excess Fertilizer Nutrients"
+        },
+        {
+          "name": "travel",
+          "address": "http://d3js.org",
+          "note": "The gap between attainable yields and actual yields, with modeled yields assuming the percentage of gap closed."
+        },
+        {
+          "name": "africa",
+          "address": "http://sunsp.net"
+        },
+        {
+          "name": "wildlife",
+          "address": "http://sunsp.net"
+        },
+        {
+          "name": "south",
+          "address": "http://sunsp.net"
+        },
+        {
+          "name": "nature",
+          "address": "http://sunsp.net"
+        },
+        {
+          "name": "animals",
+          "address": "http://sunsp.net"
+        },
+        {
+          "name": "history",
+          "address": "http://sunsp.net"
+        },
+        {
+          "name": "natural",
+          "address": "http://sunsp.net"
+        },
+        {
+          "name": "tourism",
+          "address": "http://sunsp.net"
+        }
+      ]
+    },
+    {
+      "name": "automobiles",
+      "description": "Profiles of Country",
+      "children": [
+        {
+          "name": "mercedes",
+          "address": "http://d3js.org"
+        },
+        {
+          "name": "benz",
+          "address": "http://d3js.org"
+        },
+        {
+          "name": "bmw",
+          "address": "http://d3js.org"
+        },
+        {
+          "name": "ferrari",
+          "address": "http://d3js.org"
+        },
+        {
+          "name": "car",
+          "address": "http://uis.edu/ens"
+        },
+        {
+          "name": "class",
+          "address": "http://d3js.org"
+        },
+        {
+          "name": "motor",
+          "address": "http://d3js.org"
+        },
+        {
+          "name": "auto",
+          "address": "http://d3js.org"
+        },
+        {
+          "name": "trend",
+          "address": "http://uis.edu/ens"
+        },
+        {
+          "name": "automobile",
+          "address": "http://uis.edu/ens"
+        }
+      ]
+    },
+    {
+      "name": "music",
+      "description": "Crop Data in 5 minutes grid",
+      "children": [
+        {
+          "name": "direction",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "music",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "justin",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "beiber",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "jam",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "def",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "syco",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "records",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "island",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "rihanna",
+          "address": "http://www.earthstat.org/"
+        }
+      ]
+    },
+    {
+      "name": "news",
+      "description": "Crop Data in 5 minutes grid",
+      "children": [
+        {
+          "name": "bbc",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "sky",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "forbes",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "vice",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "skynews",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "video",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "science",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "discovery",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "country",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "world",
+          "address": "http://www.earthstat.org/"
+        }
+      ]
+    },
+    {
+      "name": "education",
+      "description": "Crop Data in 5 minutes grid",
+      "children": [
+        {
+          "name": "ted",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "education",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "science",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "ed",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "green",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "hank",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "scishow",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "discovery",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "learning",
+          "address": "http://www.earthstat.org/"
+        },
+        {
+          "name": "sci",
+          "address": "http://www.earthstat.org/"
+        }
+      ]
+    }
+  ]
+}

@@ -86,19 +86,20 @@ function d3Line() {
 
 
       var voronoi = d3.geom.voronoi(vertices).map(function(d,i) {
-          return { 'data': d, 'series': vertices[i][2], 'point': vertices[i][3] }
+    	  return { 'data': d, 'series': vertices[i][2], 'point': vertices[i][3] }
       });
 
       //TODO: Add very small amount of noise to prevent duplicates
-      var pointPaths = wrap.select('.point-paths').selectAll('path')
+     var pointPaths = wrap.select('.point-paths').selectAll('path')
           .data(voronoi);
       pointPaths.enter().append('path')
           .attr('class', function(d,i) { return 'path-' + i; });
       pointPaths.exit().remove();
       pointPaths
-          .attr('clip-path', function(d) { return 'url(#clip-' + id + '-' + d.series + '-' + d.point + ')'; })
-          .attr('d', function(d) { return 'M' + d.data.join(',') + 'Z'; })
+          .attr('clip-path', function(d) {if (d) return 'url(#clip-' + id + '-' + d.series + '-' + d.point + ')'; })
+          .attr('d', function(d) { if (d)return 'M' + d.data.join(',') + 'Z'; })
           .on('mouseover', function(d) {
+        	  if (d)
             dispatch.pointMouseover({
               point: data[d.series].data[d.point],
               series: data[d.series],
@@ -108,7 +109,8 @@ function d3Line() {
             });
           })
           .on('mouseout', function(d) {
-            dispatch.pointMouseout({
+        	  if (d)
+        	  dispatch.pointMouseout({
               point: d,
               series: data[d.series],
               pointIndex: d.point,

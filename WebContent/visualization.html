@@ -9,7 +9,9 @@
 <title>Youtube Video Statistics</title>
 <link href="bootstrap.min.css" rel="stylesheet">
 <link href="styles.css" rel="stylesheet">
-<link href="css/d3.css" rel="stylesheet">
+<link href="css/d3.css" rel="stylesheet"  type="text/css">
+<link href="css/nouislider.min.css" rel="stylesheet"  type="text/css">
+<link href="css/d3.parcoords.css" rel="stylesheet" >
 </head>
 <body bgcolor="#EFEFEF">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -22,18 +24,22 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#" style="color: #7ED169">Youtube
+				<img alt="Youtube"
+					src="images/youtube-icon.png" width="28px" height="20px" /><a class="navbar-brand" href="#">Youtube
 					Video Statistics</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="#" style="color: #7ED169"> </a></li>
+				<ul id="viewSelection" class="nav navbar-nav">
+					<li class="active"><a id="V1" href="#" style="color: #7ED169">Videos Uploaded Trend</a></li>
+					<li class="active"><a id="V2" href="#">Channel trends</a></li>
+					<li class="active"><a id="V4" href="#">Comment Analysis</a></li>
+					<li class="active"><a id="V7" href="#">TODO</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
-	<div style="float: right; margin-right: 10px; margin-top: 50px;"
+	<!--  <div style="float: right; margin-right: 10px; margin-top: 50px;"
 		id="viewSelection">
 		<div>
 			<input id="V1" type="button" height="30px"
@@ -56,7 +62,7 @@
 				class='button'
 				style="display: block; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;" />
 		</div>
-	</div>
+	</div> -->
 	<div id="chart-container">
 		<!-- File contents -->
 		<div id="filecontents" class="mygrid-wrapper-div packets"
@@ -128,81 +134,92 @@
 				</ul>
 			</div>
 		</div>
-		<div id="chartContainer" class="center chart"
-			style="width: 60%; display: inline-block; margin-left: 20px;">
-
-			<div id="divTimeFrame" class="timeframe" style='display:block'>
+		
+		<div id="divTimeFrame" class="timeframe" style='display:block'>
 				<input id="monthlyButton" type="button" height="30px"
 					value="Monthly" class="button" title="Monthly"
-					style="background-color:#ffa500;margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					style="background-color:#ffa500;margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="monthlyTimePeriodClick()" /> 
 				<input id="quarterlyButton"
 					type="button" height="30px" value="Quarterly" class="button"
 					title="Quarterly"
-					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					style="margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="quarterlyTimePeriodClick()" /> 
 				<input
 					id="halfyearlyButton" type="button" height="30px"
 					value="Half Yearly" class="button" title="Half Yearly"
-					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					style="margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="halfYearlyTimePeriodClick()" /> 
 				<input id="yearlyButton"
 					type="button" height="30px" value="Yearly" class="button"
 					title="Half Yearly"
-					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					style="margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="yearlyTimePeriodClick()" />
 			</div>
 			<div id="trendFrame" class="timeframe" style='display:none'>
 				<input id="viewtrend" type="button" height="30px"
 					value="views" class="button" title="Views"
-					style="background-color:#ffa500;margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					style="background-color:#ffa500;margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="process('views')" /> 
 				<input id="liketrend"
 					type="button" height="30px" value="likes" class="button"
 					title="Likes"
-					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					style="margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="process('likes')" /> 
 				<input
 					id="disliketrend" type="button" height="30px"
 					value="dislikes" class="button" title="dislikes"
-					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					style="margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="process('dislikes')" /> 
 				<input id="likesperdisliketrend"
 					type="button" height="30px" value="likes per dislike" class="button"
 					title="like per dislike"
-					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					style="margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="process('likes per dislike')" />
 				<input id="viewsperliketrend"
 					type="button" height="30px" value="views per like" class="button"
 					title="views per like"
-					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					style="margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="process('views per like')" />
 				<input id="durationtrend"
 					type="button" height="30px" value="duration" class="button"
 					title="duration"
+					style="margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					onclick="process('duration')" />
+				<input id="videoquality"
+					type="button" height="30px" value="Video Quality" class="button"
+					title="Video Quality"
 					style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
-					onclick="process('duration')" />	
-				<div id="ratio" style='font-size:20;font-weight:bold'>
-				</div>
+					onclick="process('Video Quality')" />
+				<div id="ratio" style='font-size:20;font-weight:bold'></div>
 			</div>
-			<div id="chart"></div>
-		</div>
+			<div id="chart" class="center chart chartcontainer"></div>
 	</div>
 	<div id="xAxisText"
 		style="text-align: center; color: #5090A0; padding-top: 30px; font-size: 20px;"></div>
+	<script src="d3.min.js"></script>
 	<script src="jquery.min.js"></script>
 	<script src="bootstrap.min.js"></script>
-	<script src="d3.min.js"></script>
+	<script src="scripts/nouislider.min.js"></script>
+	<script src="scripts/createQuadrantChart.js" type="text/javascript"></script>
 	<script src="scripts/nvtooltip.js"></script>
 	<script src="scripts/d3legend.js"></script> 
 	<script src="scripts/d3line.js"></script> 
-	<script src="scripts/d3linewithlegend.js"></script> 		
+	<script src="scripts/d3linewithlegend.js"></script>
+	<script src="scripts/d3.parcoords.js"></script> 		
 	<script src="data.js"></script>
 	<script src="bar.js"></script>
 	<script src="videoupload.js"></script>
-	<script src="binning.js"></script>	
+	<script src="binning.js"></script>
+	<script src="lsa.js"></script>	
 	<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
 	<script>
+		var stopVideo = function(player) {
+	    	var vidSrc = player.prop('src');
+	    	player.prop('src', ''); // to force it to pause
+	    	player.prop('src', vidSrc);
+	  	};
+
 		var view = "V1";
 		var channel = "The Tonight Show Starring Jimmy Fallon";
 		var category = "comedy";
@@ -225,9 +242,9 @@
 			controlChart();
 		});
 		
-		$("#viewSelection input").click(function(){
-			$("#viewSelection input").css("backgroundColor", "white")
-			$(this).css("backgroundColor", "#ffa500")
+		$("#viewSelection a").click(function(){
+			// $("#viewSelection a").css("backgroundColor", "white")
+			// $(this).css("backgroundColor", "#ffa500")
 			view = this.id;
 			controlChart();
 		});
@@ -244,10 +261,30 @@
 			xhttp.send();
 		}
 		function formatResult(respText) {
-			if (view == 'V1')
+			if (view == 'V1') {
+				$("#V1").css('color','#7ED169');
+				$("#V2").css('color','#9D9D9D');
+				$("#V4").css('color','#9D9D9D');
+				$("#V7").css('color','#9D9D9D');
 				videoCount(respText);
-			else if (view == 'V2')
+			} else if (view == 'V2') {
+				$("#V1").css('color','#9D9D9D');
+				$("#V2").css('color','#7ED169');
+				$("#V4").css('color','#9D9D9D');
+				$("#V7").css('color','#9D9D9D');
 				channelTrend(respText);
+			} else if (view == 'V4') {
+				$("#V1").css('color','#9D9D9D');
+				$("#V2").css('color','#9D9D9D');
+				$("#V4").css('color','#7ED169');
+				$("#V7").css('color','#9D9D9D');
+				lsa();
+			} else if (view == 'V7') {
+				$("#V1").css('color','#9D9D9D');
+				$("#V2").css('color','#9D9D9D');
+				$("#V4").css('color','#9D9D9D');
+				$("#V7").css('color','#7ED169');
+			}
 		}
 	</script>
 </body>
