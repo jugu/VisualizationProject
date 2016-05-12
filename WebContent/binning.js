@@ -347,17 +347,17 @@ function loadCategoryView(dataoriginal)
 	      .data(function(d) { return d.counts; })
 	    .enter().append("rect")
 	      .attr("width", x1.rangeBand())
-	      .attr("x", function(d) { return x1(d.name); })
+	      .attr("x", function(d) { console.log(x1(d.name)); return x1(d.name); })
 	      .attr("y", function(d) { if (legendFilter[d.name]['val']) return y(d.value); else return 0})
 	      .attr("height", function(d) { if (legendFilter[d.name].val) return height - y(d.value);  else return 0 })
 	      .style("fill", function(d) { return color(d.name); })
-	      .on('mouseover', function (d) {
+	      .on('mouseover', function (d, i) {
 	    	  if (legendFilter[d.name].val)
 	    	  {
 	        	  var offset = $('#chart').offset(), // { left: 0, top: 0 }
-	    	        left = x1(d.name) + offset.left,
-	    	        top = y(d.value) + offset.top,
-	    	        content = '<div>jugu</div>';
+	    	        left = d3.event.pageX,
+	    	        top = y(d.value) + offset.top + 20,
+	    	        content = '<div>'+d.name+': '+d3.format(".2s")(d.value)+'</div>';
 	    		  nvtooltip.show([left, top], content);
 	    	  }
 	      })
