@@ -24,7 +24,6 @@ visbody {
 
 .center {
 	margin: auto;
-	width: 1000px;
 	height: 80%;
 	padding: 10px;
 }
@@ -43,7 +42,6 @@ visbody {
 	background-color: steelblue;
 	border-radius: 5px;
 }
-
 
 .data1 {
 	stroke: green;
@@ -83,8 +81,8 @@ visbody {
 }
 
 .mygrid-wrapper-div {
-	overflow: scroll;
-	height: 600px;
+	/*overflow: scroll;*/
+	height: 100%;
 }
 
 .packets {
@@ -96,7 +94,7 @@ visbody {
 }
 
 .chart {
-	margin-top: 50px;
+	margin-top: 10px;
 	text-align: center;
 	box-shadow: 10px 10px 45px #888888;
 	background-color: #FFF;
@@ -140,29 +138,32 @@ visbody {
 }
 
 .chart rect {
-  fill: steelblue;
+	fill: steelblue;
 }
 
 .chart text {
-  fill: black;
-  font: 10px sans-serif;
-  text-anchor: end;
+	fill: black;
+	font: 10px sans-serif;
+	text-anchor: end;
 }
 
-.timeframe{
-	width:100%;
-	display:block;
+.timeframe {
+	width: 100%;
+	display: block;
+	margin-top: 0px;
+	text-align: center;
 }
 
-.unselectlegend{
-	font-color:red;
-	opacity:0.5;
-	cursor:pointer;
+.unselectlegend {
+	font-color: red;
+	opacity: 0.5;
+	cursor: pointer;
 }
-.showlegend{
-	font-color:black;
-	opacity:1;
-	cursor:pointer;
+
+.showlegend {
+	font-color: black;
+	opacity: 1;
+	cursor: pointer;
 }
 
 .d3-tip {
@@ -186,8 +187,8 @@ visbody {
 	text-align: center;
 }
 
-#flowselect{
-	color:black;
+#flowselect {
+	color: black;
 }
 
 /* Style northward tooltips differently */
@@ -195,4 +196,32 @@ visbody {
 	margin: -1px 0 0 0;
 	top: 100%;
 	left: 0;
+}
+
+.mainBubble {
+	background: #fff;
+	border: solid 1px #ddd;
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0);
+	font: 10px sans-serif;
+	height: 800px;
+	position: relative;
+	width: 77%;
+}
+
+.mainBubble svg {
+	left: 0;
+	position: absolute;
+	top: 0;
+}
+
+.mainBubble circle.topBubble {
+	fill: #aaa;
+	stroke: #666;
+	stroke-width: 1.5px;
+}
+
+.chartcontainer {
+	width: 77%;
+	display: inline-block;
+	margin-left: 20px;
 }

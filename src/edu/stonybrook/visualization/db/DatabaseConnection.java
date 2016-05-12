@@ -3,7 +3,8 @@ package edu.stonybrook.visualization.db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
+//String myUrl = "jdbc:mysql://130.245.101.3:3306/ADE";
+// TODO Auto-generated catch block
 public class DatabaseConnection {
 
 	private static Connection conn = null;
@@ -12,9 +13,9 @@ public class DatabaseConnection {
 		try {
 			String myDriver = "com.mysql.jdbc.Driver";
 			//String myUrl = "jdbc:mysql://130.245.101.3:3306/ADE";
-			String myUrl = "jdbc:mysql://127.0.0.1:3306/visualization_final";
+			String myUrl = "jdbc:mysql://127.0.0.1:3306/visualization";
 			Class.forName(myDriver);
-			conn = DriverManager.getConnection(myUrl, "root", "admin");
+			conn = DriverManager.getConnection(myUrl, "root", "pass4root");
 		}
 		catch (Exception e)
 		{

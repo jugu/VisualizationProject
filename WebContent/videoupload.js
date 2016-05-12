@@ -138,14 +138,14 @@ function drawVideoCountGraph() {
 			"steelblue").attr("x", function(d, i) {
 		return x(i);
 	}).attr("width", x.rangeBand()).attr("y", function(d) {
-		return height - y(d);
+		return height;
 	}).attr("height", 0).on('mouseover', function(d) {
 		tip.show(d);
 		d3.select(this).style('fill', "#e6b000");
 	}).on('mouseout', function(d) {
 		tip.hide(d);
 		d3.select(this).style('fill', 'steelblue');
-	}).transition().duration(1000).delay(300).ease('elastic').attr('height',
+	}).transition().duration(1000).delay(200).attr('height',
 			function(d) {
 				return height - y(d);
 			}).attr('y', function(d) {
