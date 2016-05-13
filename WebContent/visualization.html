@@ -33,7 +33,7 @@
 					<li class="active"><a id="V1" href="#" style="color: #7ED169">Videos Uploaded Trend</a></li>
 					<li class="active"><a id="V2" href="#">Channel trends</a></li>
 					<li class="active"><a id="V4" href="lsa.html">Tag Analysis</a></li>
-					<li class="active"><a id="V7" href="#">TODO</a></li>
+					<li class="active"><a id="V7" href="#">Correlations</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -174,7 +174,7 @@
 				<input id="likesperdisliketrend"
 					type="button" height="30px" value="likes per dislike" class="button"
 					title="like per dislike"
-					style="margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
+					style="width:120px;margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="process('likes per dislike')" />
 				<input id="viewsperliketrend"
 					type="button" height="30px" value="views per like" class="button"
@@ -193,7 +193,27 @@
 					onclick="process('Video Quality')" />
 				<div id="ratio" style='font-size:20;font-weight:bold'></div>
 			</div>
-			<div id="chart" class="center chart chartcontainer"></div>
+			<div id="categorytrend" style='display:none'>
+			<input id="combinedview"
+						type="button" height="30px" value="Combined View" class="button"
+						title="Combined View"
+						style="width:120px; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+			<input id="parallelview"
+						type="button" height="30px" value="Parallel View" class="button"
+						title="Parallel View"
+						style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+			</div>
+			<div id="chart" style='float:left' align='center' class="center chart chartcontainer"></div>
+			<div id="channeltrend" style='display:none'>
+			<input id="combinedviewchannel"
+						type="button" height="30px" value="Combined View" class="button"
+						title="Combined View"
+						style="width:120px; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+			<input id="parallelviewchannel"
+						type="button" height="30px" value="Parallel View" class="button"
+						title="Parallel View"
+						style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+			</div>
 	</div>
 	<div id="xAxisText"
 		style="text-align: center; color: #5090A0; padding-top: 30px; font-size: 20px;"></div>

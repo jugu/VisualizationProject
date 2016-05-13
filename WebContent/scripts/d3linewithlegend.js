@@ -1,6 +1,6 @@
 function d3LineWithLegend() {
   var margin = {top: 30, right: 10, bottom: 40, left: 60},
-      width = 960,
+      width = $("#chart").width(),
       height = 500,
       dotRadius = function() { return 2.5 },
       xAxisLabelText = false,
