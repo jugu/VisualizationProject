@@ -12,8 +12,12 @@ var svgContainer;
 var svg;
 var mainNote;
 
+var categoryDictionary = [];
+var json_file = "lsa_json.json";
+
 function lsa() {
 	$("#chart").html("");
+	getCategoriesChannels();
 	svgContainer = d3.select("#chart").attr("width",
 			w).attr("height",
 					h);
@@ -41,7 +45,7 @@ function lsa() {
 					});
 	d3
 			.json(
-					"lsa_json.json",
+					json_file,
 					function(error, root) {
 						console.log(error);
 
@@ -71,12 +75,19 @@ function lsa() {
 										function(d, i) {
 											return colVals(i);
 										}) // #1f77b4
-								.style("opacity", 0.3).on("mouseover",
+								.style("opacity", 0.3)
+								.on("mouseover",
 										function(d, i) {
 											return activateBubble(d, i);
-										});
+								})
+								.on("click", function(d, i) {
+									onCategorySelect(d, i);
+								});
 
 						bubbleObj.append("text").attr("class", "topBubbleText")
+								.attr("id", function(d, i) {
+									return "topBubbleText_" + i;
+								})
 								.attr("x", function(d, i) {
 									return oR * (3 * (1 + i) - 1);
 								}).attr("y", (h + oR) / 3).style("fill",
@@ -90,6 +101,9 @@ function lsa() {
 									return d.name
 								}).on("mouseover", function(d, i) {
 									return activateBubble(d, i);
+								})
+								.on("click", function(d, i) {
+									onCategorySelect(d, i);
 								});
 
 						for (var iB = 0; iB < nTop; iB++) {
@@ -131,7 +145,7 @@ function lsa() {
 											}).attr("cursor", "pointer").style(
 											"opacity", 0.5).style("fill",
 											"#eee").on("click", function(d, i) {
-										window.open(d.address);
+												onCategorySelect(d,i);
 									}).on(
 											"mouseover",
 											function(d, i) {
@@ -179,9 +193,7 @@ function lsa() {
 											"dominant-baseline", "middle")
 									.attr("alignment-baseline", "middle").text(
 											function(d) {
-												return d.name
-											}).on("click", function(d, i) {
-										window.open(d.address);
+												return d.name;
 									});
 
 						}
@@ -342,6 +354,33 @@ function activateBubble(d, i) {
 					return (k == i) ? 1 : 0;
 				});
 	}
+}
+
+function getCategoriesChannels() {
+	d3.json("categories_channels.json", function(error, root) {
+		console.log(root);
+		for (var i = 0; i < root.length; i++) {
+			obj = {}
+			obj.key = root[i].category;
+			obj.value = root[i].channels;
+			categoryDictionary.push(obj);
+		}
+	});
+}
+
+function onCategorySelect(d, i) {
+	for(var i = 0; i < categoryDictionary.length; i++) {
+		if(categoryDictionary[i].key == d.name) {
+			json_file = d.name + ".json"
+			break;
+		}
+	}
+	lsa();
+}
+
+function reset() {
+	json_file = "lsa_json.json";
+	lsa();
 }
 
 window.onresize = resetBubbles;

@@ -1,0 +1,62 @@
+[
+  {
+    "category": "comedy",
+    "channels": [
+      "The Tonight Show Starring Jimmy Fallon",
+      "CollegeHumor",
+      "Jimmy Kimmel Live",
+      "Just For Laughs Gags",
+      "Comedy Central"
+    ]
+  },
+  {
+    "category": "travel",
+    "channels": [
+      "FunForLouis",
+      "BBC Earth",
+      "Africa Travel Channel",
+      "BBC Travel Show",
+      "Samuel & Audrey"
+    ]
+  },
+  {
+    "category": "automobiles",
+    "channels": [
+      "Ferrari",
+      "Mercedes-Benz",
+      "Automobile Magazine",
+      "Motor Trend Channel",
+      "BMW"
+    ]
+  },
+  {
+    "category": "music",
+    "channels": [
+      "JustinBieberVEVO",
+      "RihannaVEVO",
+      "OneDirectionVEVO",
+      "TaylorSwiftVEVO",
+      "KatyPerryVEVO"
+    ]
+  },
+  {
+    "category": "news",
+    "channels": [
+      "BBC News",
+      "VICE News",
+      "Sky News",
+      "DNews",
+      "Forbes"
+    ]
+  },
+  {
+    "category": "education",
+    "channels": [
+      "Google for Education",
+      "Khan Academy",
+      "Discovery Education",
+      "TED-Ed",
+      "SciShow"
+    ]
+  }
+]

@@ -2,92 +2,96 @@
   "name": "bubble",
   "children": [
     {
-      "name": "comedy",
+      "name": "Google for Education",
       "description": "",
       "children": [
         {
-          "name": "jimmy",
+          "name": "air",
           "address": "",
           "note": ""
         },
         {
-          "name": "fallon",
+          "name": "apps",
           "address": ""
         },
         {
-          "name": "just",
+          "name": "hangout",
           "address": "",
           "note": ""
         },
         {
-          "name": "laughs",
+          "name": "eduonair",
           "address": "",
           "note": ""
         },
         {
-          "name": "camera",
+          "name": "hangouts",
           "address": "",
           "note": ""
         },
         {
-          "name": "stand",
+          "name": "science",
           "address": "",
           "note": ""
         },
         {
-          "name": "tonight",
+          "name": "computer",
           "address": "",
           "note": ""
         },
         {
-          "name": "videos",
+          "name": "hangoutsonair",
           "address": "",
           "note": ""
         },
         {
-          "name": "joke",
+          "name": "edu",
           "address": "",
           "note": ""
         },
         {
-          "name": "practical",
+          "name": "chromebooks",
           "address": "",
           "note": ""
         }
       ]
     },
     {
-      "name": "travel",
+      "name": "Khan Academy",
       "description": "",
       "children": [
         {
-          "name": "bbc",
+          "name": "learning",
           "address": "",
           "note": ""
         },
         {
-          "name": "travel",
+          "name": "education",
           "address": "",
           "note": ""
         },
         {
-          "name": "africa",
+          "name": "online",
           "address": ""
         },
         {
-          "name": "wildlife",
+          "name": "lessons",
           "address": ""
         },
         {
-          "name": "south",
+          "name": "dotsub",
           "address": ""
         },
         {
-          "name": "nature",
+          "name": "khan",
           "address": ""
         },
         {
-          "name": "animals",
+          "name": "physics",
+          "address": ""
+        },
+        {
+          "name": "numbers",
           "address": ""
         },
         {
@@ -95,133 +99,17 @@
           "address": ""
         },
         {
-          "name": "natural",
-          "address": ""
-        },
-        {
-          "name": "tourism",
+          "name": "fractions",
           "address": ""
         }
       ]
     },
     {
-      "name": "automobiles",
+      "name": "Discovery Education",
       "description": "",
       "children": [
         {
-          "name": "mercedes",
-          "address": ""
-        },
-        {
-          "name": "benz",
-          "address": ""
-        },
-        {
-          "name": "bmw",
-          "address": ""
-        },
-        {
-          "name": "ferrari",
-          "address": ""
-        },
-        {
-          "name": "car",
-          "address": ""
-        },
-        {
-          "name": "class",
-          "address": ""
-        },
-        {
-          "name": "motor",
-          "address": ""
-        },
-        {
-          "name": "auto",
-          "address": ""
-        },
-        {
-          "name": "trend",
-          "address": ""
-        },
-        {
-          "name": "automobile",
-          "address": ""
-        }
-      ]
-    },
-    {
-      "name": "music",
-      "description": "",
-      "children": [
-        {
-          "name": "direction",
-          "address": ""
-        },
-        {
-          "name": "music",
-          "address": ""
-        },
-        {
-          "name": "justin",
-          "address": ""
-        },
-        {
-          "name": "beiber",
-          "address": ""
-        },
-        {
-          "name": "jam",
-          "address": ""
-        },
-        {
-          "name": "def",
-          "address": ""
-        },
-        {
-          "name": "syco",
-          "address": ""
-        },
-        {
-          "name": "records",
-          "address": ""
-        },
-        {
-          "name": "island",
-          "address": ""
-        },
-        {
-          "name": "rihanna",
-          "address": ""
-        }
-      ]
-    },
-    {
-      "name": "news",
-      "description": "",
-      "children": [
-        {
-          "name": "bbc",
-          "address": ""
-        },
-        {
-          "name": "sky",
-          "address": ""
-        },
-        {
-          "name": "forbes",
-          "address": ""
-        },
-        {
-          "name": "vice",
-          "address": ""
-        },
-        {
-          "name": "skynews",
-          "address": ""
-        },
-        {
-          "name": "video",
+          "name": "den",
           "address": ""
         },
         {
@@ -229,25 +117,45 @@
           "address": ""
         },
         {
-          "name": "discovery",
+          "name": "techbook",
           "address": ""
         },
         {
-          "name": "country",
+          "name": "digital",
           "address": ""
         },
         {
-          "name": "world",
+          "name": "streaming",
+          "address": ""
+        },
+        {
+          "name": "network",
+          "address": ""
+        },
+        {
+          "name": "educator",
+          "address": ""
+        },
+        {
+          "name": "3m",
+          "address": ""
+        },
+        {
+          "name": "webinar",
+          "address": ""
+        },
+        {
+          "name": "students",
           "address": ""
         }
       ]
     },
     {
-      "name": "education",
+      "name": "TED-Ed",
       "description": "",
       "children": [
         {
-          "name": "ted",
+          "name": "tedx",
           "address": ""
         },
         {
@@ -255,35 +163,81 @@
           "address": ""
         },
         {
+          "name": "history",
+          "address": ""
+        },
+        {
+          "name": "animation",
+          "address": ""
+        },
+        {
           "name": "science",
           "address": ""
         },
         {
-          "name": "ed",
+          "name": "physics",
           "address": ""
         },
         {
-          "name": "green",
+          "name": "studio",
           "address": ""
         },
         {
-          "name": "hank",
+          "name": "brain",
           "address": ""
         },
         {
-          "name": "scishow",
+          "name": "language",
           "address": ""
         },
         {
-          "name": "discovery",
+          "name": "chemistry",
           "address": ""
-        },
-        {
-          "name": "learning",
-          "address": ""
-        },
+        }
+      ]
+    },
+    {
+      "name": "SciShow",
+      "description": "",
+      "children": [
         {
           "name": "sci",
+          "address": ""
+        },
+        {
+          "name": "biology",
+          "address": ""
+        },
+        {
+          "name": "news",
+          "address": ""
+        },
+        {
+          "name": "michael",
+          "address": ""
+        },
+        {
+          "name": "aranda",
+          "address": ""
+        },
+        {
+          "name": "space",
+          "address": ""
+        },
+        {
+          "name": "animal",
+          "address": ""
+        },
+        {
+          "name": "human",
+          "address": ""
+        },
+        {
+          "name": "chemistry",
+          "address": ""
+        },
+        {
+          "name": "quick",
           "address": ""
         }
       ]

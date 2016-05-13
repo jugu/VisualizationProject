@@ -225,3 +225,14 @@ visbody {
 	display: inline-block;
 	margin-left: 20px;
 }
+
+.lsacontainer {
+	text-align: center;
+	box-shadow: 10px 10px 45px #888888;
+	background-color: #FFF;
+	width: 97%;
+	display: inline-block;
+	margin: 20px 20px 20px 20px;
+	height: 80%;
+	padding: 0px;
+}

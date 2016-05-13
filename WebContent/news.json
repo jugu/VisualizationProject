@@ -2,234 +2,114 @@
   "name": "bubble",
   "children": [
     {
-      "name": "comedy",
+      "name": "BBC News",
       "description": "",
       "children": [
-        {
-          "name": "jimmy",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "fallon",
-          "address": ""
-        },
-        {
-          "name": "just",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "laughs",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "camera",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "stand",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "tonight",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "videos",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "joke",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "practical",
-          "address": "",
-          "note": ""
-        }
-      ]
-    },
-    {
-      "name": "travel",
-      "description": "",
-      "children": [
-        {
-          "name": "bbc",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "travel",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "africa",
-          "address": ""
-        },
-        {
-          "name": "wildlife",
-          "address": ""
-        },
-        {
-          "name": "south",
-          "address": ""
-        },
-        {
-          "name": "nature",
-          "address": ""
-        },
-        {
-          "name": "animals",
-          "address": ""
-        },
-        {
-          "name": "history",
-          "address": ""
-        },
-        {
-          "name": "natural",
-          "address": ""
-        },
-        {
-          "name": "tourism",
-          "address": ""
-        }
-      ]
-    },
-    {
-      "name": "automobiles",
-      "description": "",
-      "children": [
-        {
-          "name": "mercedes",
-          "address": ""
-        },
-        {
-          "name": "benz",
-          "address": ""
-        },
-        {
-          "name": "bmw",
-          "address": ""
-        },
-        {
-          "name": "ferrari",
-          "address": ""
-        },
-        {
-          "name": "car",
-          "address": ""
-        },
-        {
-          "name": "class",
-          "address": ""
-        },
-        {
-          "name": "motor",
-          "address": ""
-        },
-        {
-          "name": "auto",
-          "address": ""
-        },
-        {
-          "name": "trend",
-          "address": ""
-        },
-        {
-          "name": "automobile",
-          "address": ""
-        }
-      ]
-    },
-    {
-      "name": "music",
-      "description": "",
-      "children": [
-        {
-          "name": "direction",
-          "address": ""
-        },
-        {
-          "name": "music",
-          "address": ""
-        },
-        {
-          "name": "justin",
-          "address": ""
-        },
-        {
-          "name": "beiber",
-          "address": ""
-        },
-        {
-          "name": "jam",
-          "address": ""
-        },
-        {
-          "name": "def",
-          "address": ""
-        },
-        {
-          "name": "syco",
-          "address": ""
-        },
-        {
-          "name": "records",
-          "address": ""
-        },
-        {
-          "name": "island",
-          "address": ""
-        },
-        {
-          "name": "rihanna",
-          "address": ""
-        }
-      ]
-    },
-    {
-      "name": "news",
-      "description": "",
-      "children": [
-        {
-          "name": "bbc",
-          "address": ""
-        },
-        {
-          "name": "sky",
-          "address": ""
-        },
-        {
-          "name": "forbes",
-          "address": ""
-        },
-        {
-          "name": "vice",
-          "address": ""
-        },
-        {
-          "name": "skynews",
-          "address": ""
-        },
         {
           "name": "video",
+          "address": "",
+          "note": ""
+        },
+        {
+          "name": "youtube",
           "address": ""
         },
         {
-          "name": "science",
+          "name": "documentary",
+          "address": "",
+          "note": ""
+        },
+        {
+          "name": "lifestyle",
+          "address": "",
+          "note": ""
+        },
+        {
+          "name": "interview",
+          "address": "",
+          "note": ""
+        },
+        {
+          "name": "world",
+          "address": "",
+          "note": ""
+        },
+        {
+          "name": "culture",
+          "address": "",
+          "note": ""
+        },
+        {
+          "name": "tv",
+          "address": "",
+          "note": ""
+        },
+        {
+          "name": "country",
+          "address": "",
+          "note": ""
+        },
+        {
+          "name": "documentaries",
+          "address": "",
+          "note": ""
+        }
+      ]
+    },
+    {
+      "name": "VICE News",
+      "description": "",
+      "children": [
+        {
+          "name": "vbs",
+          "address": "",
+          "note": ""
+        },
+        {
+          "name": "country",
+          "address": "",
+          "note": ""
+        },
+        {
+          "name": "mag",
           "address": ""
         },
         {
-          "name": "discovery",
+          "name": "com",
+          "address": ""
+        },
+        {
+          "name": "war",
+          "address": ""
+        },
+        {
+          "name": "funny",
+          "address": ""
+        },
+        {
+          "name": "syria",
+          "address": ""
+        },
+        {
+          "name": "ukraine",
+          "address": ""
+        },
+        {
+          "name": "russia",
+          "address": ""
+        },
+        {
+          "name": "united",
+          "address": ""
+        }
+      ]
+    },
+    {
+      "name": "Sky News",
+      "description": "",
+      "children": [
+        {
+          "name": "skynews",
           "address": ""
         },
         {
@@ -237,53 +117,127 @@
           "address": ""
         },
         {
-          "name": "world",
+          "name": "tv",
+          "address": ""
+        },
+        {
+          "name": "election",
+          "address": ""
+        },
+        {
+          "name": "party",
+          "address": ""
+        },
+        {
+          "name": "genre",
+          "address": ""
+        },
+        {
+          "name": "subject",
+          "address": ""
+        },
+        {
+          "name": "video",
+          "address": ""
+        },
+        {
+          "name": "london",
+          "address": ""
+        },
+        {
+          "name": "politician",
           "address": ""
         }
       ]
     },
     {
-      "name": "education",
+      "name": "DNews",
       "description": "",
       "children": [
         {
-          "name": "ted",
+          "name": "tube",
           "address": ""
         },
         {
-          "name": "education",
+          "name": "trace",
           "address": ""
         },
         {
-          "name": "science",
+          "name": "dominguez",
           "address": ""
         },
         {
-          "name": "ed",
+          "name": "age",
           "address": ""
         },
         {
-          "name": "green",
+          "name": "health",
           "address": ""
         },
         {
-          "name": "hank",
+          "name": "environment",
           "address": ""
         },
         {
-          "name": "scishow",
+          "name": "animals",
           "address": ""
         },
         {
-          "name": "discovery",
+          "name": "evolution",
           "address": ""
         },
         {
-          "name": "learning",
+          "name": "current",
           "address": ""
         },
         {
-          "name": "sci",
+          "name": "space",
+          "address": ""
+        }
+      ]
+    },
+    {
+      "name": "Forbes",
+      "description": "",
+      "children": [
+        {
+          "name": "magazine",
+          "address": ""
+        },
+        {
+          "name": "business",
+          "address": ""
+        },
+        {
+          "name": "nyse",
+          "address": ""
+        },
+        {
+          "name": "video",
+          "address": ""
+        },
+        {
+          "name": "com",
+          "address": ""
+        },
+        {
+          "name": "technology",
+          "address": ""
+        },
+        {
+          "name": "nasdaq",
+          "address": ""
+        },
+        {
+          "name": "music",
+          "address": ""
+        },
+        {
+          "name": "new",
+          "address": ""
+        },
+        {
+          "name": "industry",
           "address": ""
         }
       ]
