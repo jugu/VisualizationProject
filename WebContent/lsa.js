@@ -19,14 +19,14 @@ function lsa() {
 	$("#chart").html("");
 	getCategoriesChannels();
 	svgContainer = d3.select("#chart").attr("width",
-			w).attr("height",
-					h);
+			w + margin.left + margin.right + 100).attr("height",
+					h + margin.top + margin.bottom + 120);
 
 	svg = svgContainer.append("svg").attr("class", "mainBubbleSVG")
 			.attr("width",
-			w + margin.left + margin.right).attr("height",
-			h + margin.top + margin.bottom).style('padding-left', '20px')
-			.style('padding-bottom', '20px').on("mouseleave", function() {
+			w  + margin.left + margin.right + 100).attr("height",
+			h  + margin.top + margin.bottom + 120).style('padding-left', '20px')
+			.style('margin-top', '30px').on("mouseleave", function() {
 				return resetBubbles();
 			});
 
@@ -202,7 +202,7 @@ function lsa() {
 }
 
 resetBubbles = function() {
-	w = window.innerWidth * 0.68 * 0.95;
+	//w = window.innerWidth * 0.68 * 0.95;
 	oR = w / (1 + 3 * nTop);
 
 	// h = Math.ceil(w / nTop * 2);
@@ -210,8 +210,8 @@ resetBubbles = function() {
 
 	mainNote.attr("y", h - 15);
 
-	svg.attr("width", w);
-	svg.attr("height", h);
+	svg.attr("width", w + margin.left + margin.right + 100);
+	svg.attr("height", h + margin.top + margin.bottom + 120);
 
 	d3
 			.select("#bubbleItemNote")
