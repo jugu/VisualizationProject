@@ -145,12 +145,10 @@ function lsa() {
 											}).attr("cursor", "pointer").style(
 											"opacity", 0.5).style("fill",
 											"#eee").on("click", function(d, i) {
-												onCategorySelect(d,i);
-									}).on(
+												window.open("https://www.youtube.com/results?search_query=" + d.name);
+											}).on(
 											"mouseover",
 											function(d, i) {
-												// window.alert("say
-												// something");
 												var noteText = "";
 												if (d.note == null
 														|| d.note == "") {
@@ -194,6 +192,9 @@ function lsa() {
 									.attr("alignment-baseline", "middle").text(
 											function(d) {
 												return d.name;
+									})
+									.on("click", function(d, i) {
+												window.open("https://www.youtube.com/results?search_query=" + d.name);
 									});
 
 						}
