@@ -626,7 +626,8 @@ function loadScatterPlotMatrix(data)
 	$("#chart").html("")
 	var width = $("#chart").width(),
 	    size = 120,
-	    padding = 30;
+	    padding = 30,
+	    legendspace = 150;
 
 	var x = d3.scale.linear()
 	    .range([padding / 2, size - padding / 2]);
@@ -666,7 +667,14 @@ function loadScatterPlotMatrix(data)
 	      .on("brush", brushmove)
 	      .on("brushend", brushend);
 
-	  var svg = d3.select("#chart").append("svg")
+	  var svgparent = d3.select("#chart").append("svg")
+			  .attr("width", size * n + padding + legendspace)
+			  .attr("height", size * n + padding + legendspace)
+			.append("g")
+			  .attr("transform", "translate(" + 0 + "," + 0 + ")");
+	  
+	  
+	  var svg = svgparent.append("svg")
 	      .attr("width", size * n + padding)
 	      .attr("height", size * n + padding)
 	    .append("g")
@@ -712,8 +720,8 @@ function loadScatterPlotMatrix(data)
 	        .attr("class", "frame")
 	        .attr("x", padding / 2)
 	        .attr("y", padding / 2)
-	        .attr("width", size - padding)
-	        .attr("height", size - padding);
+	        .attr("width", size)
+	        .attr("height", size);
 
 	    cell.selectAll("circle")
 	        .data(data)
@@ -766,4 +774,27 @@ function loadScatterPlotMatrix(data)
 	  for (i = -1; ++i < n;) for (j = -1; ++j < m;) c.push({x: a[i], i: i, y: b[j], j: j});
 	  return c;
 	}
+	var countNames = [];
+	data.forEach(function(d) {
+		 if (countNames.indexOf(d.category) < 0)
+			 countNames.push(d.category)
+	  });
+	var legend = svgparent.selectAll(".legend")
+    .data(countNames.slice().reverse())
+    .enter().append("g")
+    .attr("class","legend")
+    .attr("transform", function(d, i) { return "translate("+0+"," + i*30 + ")"; })
+
+	legend.append("rect")
+	    .attr("x", 860)
+	    .attr("width", 20)
+	    .attr("height", 15)
+	    .style("fill", color);
+	
+	legend.append("text")
+	    .attr("x", 850)
+	    .attr("y", 15)
+	    .attr("height", 15)
+	    .style("text-anchor", "end")
+	    .text(function(d) { return d; });
 }
