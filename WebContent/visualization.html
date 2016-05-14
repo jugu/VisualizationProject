@@ -156,6 +156,16 @@
 					style="margin: 10px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"
 					onclick="yearlyTimePeriodClick()" />
 			</div>
+			<div id="channeltrend" style='display:none' class="timeframe">
+			<input id="combinedviewchannel"
+						type="button" height="30px" value="Combined View" class="button"
+						title="Combined View"
+						style="width:120px; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+			<input id="parallelviewchannel"
+						type="button" height="30px" value="Parallel View" class="button"
+						title="Parallel View"
+						style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
+			</div>
 			<div id="trendFrame" class="timeframe" style='display:none'>
 				<input id="viewtrend" type="button" height="30px"
 					value="views" class="button" title="Views"
@@ -193,7 +203,7 @@
 					onclick="process('Video Quality')" />
 				<div id="ratio" style='font-size:20;font-weight:bold'></div>
 			</div>
-			<div id="categorytrend" style='display:none'>
+			<div id="categorytrend" style='display:none' class="timeframe">
 			<input id="combinedview"
 						type="button" height="30px" value="Combined View" class="button"
 						title="Combined View"
@@ -204,16 +214,6 @@
 						style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
 			</div>
 			<div id="chart" style='float:left' align='center' class="center chart chartcontainer"></div>
-			<div id="channeltrend" style='display:none'>
-			<input id="combinedviewchannel"
-						type="button" height="30px" value="Combined View" class="button"
-						title="Combined View"
-						style="width:120px; margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
-			<input id="parallelviewchannel"
-						type="button" height="30px" value="Parallel View" class="button"
-						title="Parallel View"
-						style="margin: 0px 0px 10px 5px; padding-top: 10px; padding-bottom: 10px;"/>
-			</div>
 	</div>
 	<div id="xAxisText"
 		style="text-align: center; color: #5090A0; padding-top: 30px; font-size: 20px;"></div>
