@@ -33,7 +33,7 @@
 					<li class="active"><a id="V1" href="#" style="color: #7ED169">Videos Uploaded Trend</a></li>
 					<li class="active"><a id="V2" href="#">Channel trends</a></li>
 					<li class="active"><a id="V4" href="lsa.html">Tag Analysis</a></li>
-					<li class="active"><a id="V7" href="#">Correlations</a></li>
+					<li class="active"><a id="V7" href="correlation.html">Correlations</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->
@@ -239,8 +239,15 @@
 	    	player.prop('src', ''); // to force it to pause
 	    	player.prop('src', vidSrc);
 	  	};
-
-		var view = "V1";
+	  	var query = window.location.search.substring(1);
+	    var vars = query.split("&");
+	    var view = "V1";
+	    for (var i=0;i<vars.length;i++) {
+	        var pair = vars[i].split("=");
+	        if (pair)
+	        	view = pair["1"]
+	    }
+	    console.log('view '+view)
 		var channel = "The Tonight Show Starring Jimmy Fallon";
 		var category = "comedy";
 		controlChart();
@@ -298,7 +305,7 @@
 				$("#V2").css('color','#9D9D9D');
 				$("#V4").css('color','#7ED169');
 				$("#V7").css('color','#9D9D9D');
-				lsa();
+				//lsa();
 			} else if (view == 'V7') {
 				$("#V1").css('color','#9D9D9D');
 				$("#V2").css('color','#9D9D9D');

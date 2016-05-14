@@ -34,18 +34,19 @@ public class YoutubeDBService {
 			String s = "SELECT * FROM CHANNEL";
 			if (!allChannels)
 				s += " WHERE CHANNEL_TITLE = ?";
-			else
+			else if (category != null && category.length() > 0)
 				s += " WHERE CATEGORY = ?";
 			s += " ORDER BY CHANNEL_TITLE";
 			pstmt = dbConn.prepareStatement(s);
 			if (!allChannels)
 				pstmt.setString(1, channelTitle);
-			else
+			else if (category != null && category.length() > 0)
 				pstmt.setString(1, category);
 			rS = pstmt.executeQuery();
 			while (rS.next())
 			{
 				js = new JSONObject();
+				js.put("category", rS.getString("category"));
 				js.put("title", rS.getString("channel_title"));
 				js.put("videos", rS.getLong("video_count"));
 				js.put("views", rS.getLong("view_count"));
@@ -101,11 +102,14 @@ public class YoutubeDBService {
 			else
 			{
 				String s = " select sum(view_count) as views, sum(like_count) as likes, sum(dislike_count) as dislikes, sum(comment_count) as comments, channel_title ";
-				s += " from video where category_name = ? group by channel_title";
+				s += " from video ";
+				if (category != null && category.length() > 0)
+					s += " where category_name = ?";
+				s += "group by channel_title";
 				pstmt = dbConn.prepareStatement(s);
-				pstmt.setString(1, channelTitle);
+				if (category != null && category.length() > 0)
+					pstmt.setString(1, category);
 				rS = pstmt.executeQuery();
-				JSONObject js ;
 				int i = 0;
 				while (rS.next())
 				{

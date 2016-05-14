@@ -31,16 +31,23 @@ public class YoutubeServlet extends HttpServlet {
 		doPost(request, response);
 	}
 	
-	private String processRequest (String view, String source, String category)
+	private String processRequest (String view, String source, String category, String splom)
 	{
 		YoutubeDBService dbService = new YoutubeDBService();
 		boolean checkAcrossCategory = false;
-		if (source.equals(category))
-			checkAcrossCategory = true;
-		if ("V1".equals(view))
-			return dbService.getVideosUploadedOverTime(source, category, checkAcrossCategory);
-		else if ("V2".equals(view))
-			return dbService.getChannelTrend(source, category, checkAcrossCategory);
+		if (view != null && source != null && category != null)
+		{
+			if (source.equals(category))
+				checkAcrossCategory = true;
+			if ("V1".equals(view))
+				return dbService.getVideosUploadedOverTime(source, category, checkAcrossCategory);
+			else if ("V2".equals(view))
+				return dbService.getChannelTrend(source, category, checkAcrossCategory);
+		}
+		else if (splom != null)
+		{
+			return dbService.getChannelTrend(source, null, true);
+		}
 		return dbService.getViewsPerLike(source, category, checkAcrossCategory);
 	}
 
@@ -52,7 +59,8 @@ public class YoutubeServlet extends HttpServlet {
 		String viewId =  request.getParameter("view");
 		String sourceId  = request.getParameter("source");
 		String categoryId  = request.getParameter("category");
-		String output = processRequest(viewId, sourceId, categoryId);
+		String splom = request.getParameter("splom");
+		String output = processRequest(viewId, sourceId, categoryId, splom);
 		PrintWriter pw = response.getWriter();
 		pw.write(output);
 	}

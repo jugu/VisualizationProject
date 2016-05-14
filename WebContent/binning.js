@@ -378,7 +378,7 @@ function loadCategoryView(dataoriginal)
 	    	 .attr("height", height + margin.top + margin.bottom)
 	    	 .append("g")
 	    	 .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-	var countNames = d3.keys(data[0]).filter(function(key) { return key != "title" });
+	var countNames = d3.keys(data[0]).filter(function(key) { return key != "title" && key != 'category'});
 	
 	 data.forEach(function(d) {
 	    d.counts = countNames.map(function(name) { return {name: name, value: +d[name]}; });
@@ -489,7 +489,6 @@ function loadParallelCoordinates(data)
 	    axis = d3.svg.axis().orient("left"),
 	    background,
 	    foreground;
-	console.log(data)
 	var svg = d3.select("#chart").append("svg")
 	    .attr("width", width + margin.left + margin.right)
 	    .attr("height", height + margin.top + margin.bottom)
@@ -497,7 +496,7 @@ function loadParallelCoordinates(data)
 	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 	  // Extract the list of dimensions and create a scale for each.
 	  x.domain(dimensions = d3.keys(data[0]).filter(function(d) {
-	    return d != "title" && d != "videotitle" && d != "videourl" && d != "startdate" && d != "videodate" && (y[d] = d3.scale.linear()
+	    return d != "category" && d != "title" && d != "videotitle" && d != "videourl" && d != "startdate" && d != "videodate" && (y[d] = d3.scale.linear()
 	        .domain(d3.extent(data, function(p) { return +p[d]; }))
 	        .range([height, 0]));
 	  }));
@@ -610,13 +609,24 @@ function loadParallelCoordinates(data)
 	}
 }
 
-
-function loadScatterPlotMatrix()
+function loadsplomdata()
 {
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (xhttp.readyState == 4 && xhttp.status == 200) {
+			loadScatterPlotMatrix(JSON.parse(xhttp.responseText));
+		}
+	};
+	xhttp.open("GET", "youtube?splom=1", true);
+	xhttp.send();
+}
 
+function loadScatterPlotMatrix(data)
+{
+	$("#chart").html("")
 	var width = $("#chart").width(),
-	    size = 230,
-	    padding = 20;
+	    size = 120,
+	    padding = 30;
 
 	var x = d3.scale.linear()
 	    .range([padding / 2, size - padding / 2]);
@@ -627,20 +637,19 @@ function loadScatterPlotMatrix()
 	var xAxis = d3.svg.axis()
 	    .scale(x)
 	    .orient("bottom")
-	    .ticks(6);
+	    .ticks(6).tickFormat(d3.format(".2s"))
 
 	var yAxis = d3.svg.axis()
 	    .scale(y)
 	    .orient("left")
-	    .ticks(6);
+	    .ticks(6).tickFormat(d3.format(".2s"))
 
 	var color = d3.scale.category10();
-
-	d3.csv("flowers.csv", function(error, data) {
-	  if (error) throw error;
-
+	//d3.csv("flowers.csv", function(error, data) {
+	  //if (error) throw error;
 	  var domainByTrait = {},
-	      traits = d3.keys(data[0]).filter(function(d) { return d !== "species"; }),
+	      traits = d3.keys(data[0]).filter(function(d) { 
+	    	  			return d !== "category" && d !== "title"; }),
 	      n = traits.length;
 
 	  traits.forEach(function(trait) {
@@ -665,7 +674,7 @@ function loadScatterPlotMatrix()
 
 	  svg.selectAll(".x.axis")
 	      .data(traits)
-	    .enter().append("g")
+	    .enter().append("g")	    
 	      .attr("class", "x axis")
 	      .attr("transform", function(d, i) { return "translate(" + (n - i - 1) * size + ",0)"; })
 	      .each(function(d) { x.domain(domainByTrait[d]); d3.select(this).call(xAxis); });
@@ -712,11 +721,19 @@ function loadScatterPlotMatrix()
 	        .attr("cx", function(d) { return x(d[p.x]); })
 	        .attr("cy", function(d) { return y(d[p.y]); })
 	        .attr("r", 4)
-	        .style("fill", function(d) { return color(d.species); });
+	        .style("fill", function(d) { return color(d.category); })
+	        .on("mouseover", function(d){
+	        	var left = event.clientX,
+	  	          top = event.clientY + 15;
+	        	var content = d.category
+	        	nvtooltip.show([left, top], content);
+	        })
+	        .on("mouseout", function() {
+	        	nvtooltip.cleanup();
+	        });
 	  }
 
 	  var brushCell;
-
 	  // Clear the previously-active brush, if any.
 	  function brushstart(p) {
 	    if (brushCell !== this) {
@@ -742,7 +759,7 @@ function loadScatterPlotMatrix()
 	  }
 
 	  d3.select(self.frameElement).style("height", size * n + padding + 20 + "px");
-	});
+	//});
 
 	function cross(a, b) {
 	  var c = [], n = a.length, m = b.length, i, j;
