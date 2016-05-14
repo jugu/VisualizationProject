@@ -1,43 +1,9 @@
 var selectedTrend = 'views'
 var combinedOrParallel = 'combined' 
-function slider(min, max,step, margin)
-{
-	var range = document.getElementById('range');
-
-	noUiSlider.create(range, {
-		start: [ 20, 80 ], // Handle start position
-		step: 10, // Slider moves in increments of '10'
-		margin: 20, // Handles must be more than '20' apart
-		connect: true, // Display a colored bar between the handles
-		direction: 'ltr', // Put '0' at the bottom of the slider
-		orientation: 'horizontal', // Orient the slider vertically
-		behaviour: 'tap-drag', // Move handle on tap, bar is draggable
-		range: { // Slider can select '0' to '100'
-			'min': 0,
-			'max': 100
-		},
-		pips: { // Show a scale with the slider
-			mode: 'steps',
-			density: 2
-		}
-	});
-	
-	var valueInput = document.getElementById('value-input')
-	// When the slider value changes, update the input and span
-	range.noUiSlider.on('update', function( values, handle ) {
-		if ( handle ) {
-			valueInput.value = values[handle];
-		}
-	});
-	
-	// When the input changes, set the slider value
-	valueInput.addEventListener('change', function(){
-		range.noUiSlider.set([null, this.value]);
-	});
-
-}
+var trendData = []
 function channelTrend(obj)
 {
+	$("#outbox").show();
 	$("#divTimeFrame").css('display',"none");
 	var jsobj = JSON.parse(obj);
 	var categoryView = false;
@@ -87,10 +53,14 @@ function channelTrend(obj)
 		if (combinedOrParallel == 'combined')
 		{
 			if (selectedTrend == 'Video Quality')
+			{
+				$("#outbox").hide();
 				quadrantchart(data.statistics);
+			}
 			else
 			{
-				loadChannelViewBetter(data.statistics, selectedTrend);
+				loadChannelViewNew(data.statistics, selectedTrend);
+				//loadChannelViewBetter(data.statistics, selectedTrend);
 			}
 		}
 		else
@@ -106,10 +76,14 @@ function channelTrend(obj)
 			$("#combinedviewchannel").css('backgroundColor', '#ffa500');
 			$("#parallelviewchannel").css('backgroundColor', 'white');
 			if (selectedTrend == 'Video Quality')
+			{
+				$("#outbox").hide();
 				quadrantchart(data.statistics);
+			}
 			else
 			{
-				loadChannelViewBetter(data.statistics, selectedTrend);
+				loadChannelViewNew(data.statistics, selectedTrend);
+				//loadChannelViewBetter(data.statistics, selectedTrend);
 			}
 		})
 		$("#parallelviewchannel").click(function(){
@@ -150,12 +124,19 @@ function resetbuttons(selView)
 
 function process(view)
 {
+	$("#outbox").show();
 	selectedTrend = view;
 	resetbuttons(selectedTrend);
 	if (view == 'Video Quality')
+	{
 		quadrantchart(data.statistics);
+		$("#outbox").hide();
+	}
 	else
-		loadChannelViewBetter(data.statistics, view);
+	{
+		loadChannelViewNew(data.statistics, selectedTrend);
+		//loadChannelViewBetter(data.statistics, selectedTrend);
+	}
 }
 
 
@@ -213,7 +194,7 @@ function quadrantchart(dataoriginal)
 
 var parseDate = d3.time.format("%Y-%m-%d").parse;
 
-function loadChannelViewBetter(dataoriginal, selView)
+function preprocess(dataoriginal, selView)
 {
 	var data = jQuery.extend(true, [], dataoriginal);
 	minViews = 10000000
@@ -233,9 +214,7 @@ function loadChannelViewBetter(dataoriginal, selView)
 	    if (maxViews < d.views)
 	    	maxViews = d.views
 	    
-	});	
-	//alert(minViews + ' ' + maxViews)
-		
+	});
 	if (selView == 'likes per dislike' || selView == 'views per like' || selView == 'duration')
 	{
 		var totalA = 0
@@ -265,7 +244,126 @@ function loadChannelViewBetter(dataoriginal, selView)
 	else {
 		$("#ratio").html('');
 	}
+	return data
+}
+function loadChannelViewNew(dataoriginal, selView)
+{
+	trendData = dataoriginal;
+	var data = preprocess(dataoriginal, selView)
+	data = generateData(data, selView)
+	var label = data[0].label;
+	data = data[0].data;
+	
+	$("#chart").html("");
+	var margin = {top: 20, right: 20, bottom: 40, left: 40},
+    width = $("#chart").width() - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+   
+   var x = d3.scale.linear()
+             .domain([0, d3.max(data, function(d) { return d[0]; })])
+             .range([ 0, width ]);
+   
+   var y = d3.scale.linear()
+   	      .domain([0, d3.max(data, function(d) { return d[1]; })])
+   	      .range([ height, 0 ]);
 
+   var chart = d3.select('#chart')
+	.append('svg:svg')
+	.attr('width', width + margin.right + margin.left)
+	.attr('height', height + margin.top + margin.bottom)
+	.attr('class', 'chart')
+
+   var main = chart.append('g')
+	.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+	.attr('width', width)
+	.attr('height', height)
+	.attr('class', 'main')   
+
+   // draw the x axis
+   var xAxis = d3.svg.axis()
+	.scale(x)
+	.orient('bottom');
+	
+
+   main.append('g')
+	.attr('transform', 'translate(0,' + height + ')')
+	.attr('class', 'main axis date')
+	.call(xAxis)
+	.append("text")
+    .attr("transform", "rotate(0)")
+	.attr("x", $("#chart").width()/2)
+	.attr("dy", "2.5em")
+	.style("font-size", "12")
+	.style("text-anchor", "end")
+	.text("Timeline (in days) (Video uploaded since)");
+
+   // draw the y axis
+   var yAxis = d3.svg.axis()
+	.scale(y)
+	.orient('left').tickFormat(d3.format(".2s"));
+
+   main.append('g')
+	.attr('transform', 'translate(0,0)')
+	.attr('class', 'main axis date')
+	.call(yAxis)
+    .append("text")
+    .attr("transform", "rotate(-90)")
+	.attr("y", 6)
+	.attr("dy", ".71em")
+	.style("text-anchor", "end")
+	.style("font-size", "20")
+	.text("value");
+
+   var g = main.append("svg:g"); 
+   g.selectAll("scatter-dots")
+     .data(data)
+     .enter().append("svg:circle")
+         .attr("cx", function (d,i) { return x(d[0]); } )
+         .attr("cy", function (d) { return y(d[1]); } )
+         .attr("r", 4)
+     .attr("cursor", "pointer")
+     .on("mouseover",function(d,i) {
+ 	  var offset = $('#chart').offset(), // { left: 0, top: 0 }
+ 	        left = x(d[0]) + 20,
+ 	        top = y(d[1]) + 100;
+
+ 	    var content = '<h3 style="width:400">' + d[2] + '</h3>' +
+ 	    			  '<p>'+label+': ' + d[1]+ '</p>'+
+ 	    			  '<p>' +
+ 	                  '<iframe id="video" width="400" height="200" src="https://www.youtube.com/embed/'+d[3]+'?autoplay=1&rel=0&wmode=Opaque&enablejsapi=1" frameborder="0"></iframe>'+ 	                  
+ 	                  '</p>';
+ 	    nvtooltip.show([left, top], content)})
+ 	  .on("mouseout", function (d){ 
+ 		 stopVideo($('#video'));
+    	 nvtooltip.cleanup();
+ 	  })
+   
+    /*var xSeries = data.map(function(d) { return d[0]; });
+	var ySeries = data.map(function(d) { return d[1]; });
+	var leastSquaresCoeff = leastSquares(xSeries, ySeries);
+	// apply the reults of the least squares regression
+	var x1 = xSeries[0];
+	var y1 = leastSquaresCoeff[0] + leastSquaresCoeff[1];
+	var x2 = xSeries[xSeries.length - 1];
+	var y2 = leastSquaresCoeff[0] * xSeries.length + leastSquaresCoeff[1];
+	var trendData = [[x1,y1,x2,y2]];
+	console.log(trendData)
+	var trendline = chart.selectAll(".trendline")
+		.data(trendData);
+		
+	trendline.enter()
+		.append("line")
+		.attr("class", "trendline")
+		.attr("x1", function(d) { return x(d[0]); })
+		.attr("y1", function(d) { return y(d[1]); })
+		.attr("x2", function(d) { return x(d[2]); })
+		.attr("y2", function(d) { return y(d[3]); })
+		.attr("stroke", "black")
+		.attr("stroke-width", 1);*/
+}
+function loadChannelViewBetter(dataoriginal, selView)
+{
+	var data = preprocess(dataoriginal, selView)
 	$("#chart").html("");
 	var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = $("#chart").width() - margin.left - margin.right,
@@ -276,7 +374,7 @@ function loadChannelViewBetter(dataoriginal, selView)
 	 .datum(generateData(data, selView));
 	
 	var chart = d3LineWithLegend()
-               .xAxis.label('Day of Video Upload relative to first video')
+               .xAxis.label('Timeline (in days) (Video uploaded since')
                .yAxis.label('metric value');
 
      svg.transition().duration(500)
@@ -325,14 +423,48 @@ function loadChannelViewBetter(dataoriginal, selView)
 	   return ( h - margin.top - margin.bottom - 20 < 0 ) ? 
 	             margin.top + margin.bottom + 2 : h;
 	 }
-	 //data
-	 function generateData(data, selView) {
-	   var pushdata = []
+}
+
+function removeOutLiers(data, min, max, total)
+{
+	var finaldata = []
+	var avg = total/data.length;
+	for (var i = 0; i < data.length; i++)
+	{
+		if (data[i][1] <= 20*avg && data[i][1] >= avg/20 )
+			finaldata.push(data[i])
+	}
+	return finaldata;
+}
+
+$("#outlier").click(function(){
+	loadChannelViewNew(trendData, selectedTrend)
+});
+
+function generateData(data, selView) {
+	   var pushdata = []   
+	   var minVal = -1
+	   var maxVal = 0;
+	   var total = 0;
+	   var currVal = 0;
 	   for (var i = 0; i < data.length; i++)
 		{
 		   if (data[i][selView] != '')
-			   pushdata.push([data[i].daydiff, parseInt(data[i][selView]),data[i].videotitle, data[i].videourl]);
+		   {
+			   currVal = parseInt(data[i][selView])
+			   if (minVal == -1 || minVal < currVal)
+				   minVal = currVal;
+			   if (maxVal < currVal)
+				   maxVal = currVal;
+			   total = total + currVal;
+			   pushdata.push([data[i].daydiff, currVal, data[i].videotitle, data[i].videourl]);
+		   }
 		}
+	   var removeOutLier = $("#outlier").is(":checked")
+	   console.log(removeOutLier)
+	   var filterdata = [];
+	   if (removeOutLier)
+		   pushdata = removeOutLiers(pushdata, minVal, maxVal, total);
 	   var retdata = [
 	         	     {
 	         		       data: pushdata,
@@ -340,8 +472,7 @@ function loadChannelViewBetter(dataoriginal, selView)
 	         		     }
 	         		   ];
 	   return  retdata
-	 }	 
-}
+	 }
 
 var legendFilter = {
 		"views":{"val":true,"cls":"showlegend"},
@@ -417,14 +548,14 @@ function loadCategoryView(dataoriginal)
 	      .attr("y", function(d) { if (legendFilter[d.name]['val']) return y(d.value); else return 0})
 	      .attr("height", function(d) { if (legendFilter[d.name].val) return height - y(d.value);  else return 0 })
 	      .style("fill", function(d) { return color(d.name); })
-	      .on('mouseover', function (d, i) {
-	    	  if (legendFilter[d.name].val)
-	    	  {
-	        	  var offset = $('#chart').offset(), // { left: 0, top: 0 }
-	    	        left = d3.event.pageX,
-	    	        top = y(d.value) + offset.top + 20,
-	    	        content = '<div>'+d.name+': '+d3.format(".2s")(d.value)+'</div>';
-	    	  }})
+	    //  .on('mouseover', function (d, i) {
+	    //	  if (legendFilter[d.name].val)
+	    //	  {
+	    //    	  var offset = $('#chart').offset(), // { left: 0, top: 0 }
+	    //	        left = d3.event.pageX,
+	    //	        top = y(d.value) + offset.top + 20,
+	    //	        content = '<div>'+d.name+': '+d3.format(".2s")(d.value)+'</div>';
+	    //	  }})
 	      .attr("x", function(d) { return x1(d.name); })
 	      .attr("y", function(d) { if (legendFilter[d.name]['val']) return y(d.value); else return 0})
 	      .attr("height", function(d) { if (legendFilter[d.name].val) return height - y(d.value);  else return 0 })
@@ -434,7 +565,7 @@ function loadCategoryView(dataoriginal)
 	    	  {
 	        	  var offset = $('#chart').offset(), // { left: 0, top: 0 }
 	        	  left = d3.event.pageX,
-	    	        top = y(d.value),
+	    	        top = y(d.value)+100,
 	    	        content = '<div>'+d.name+': '+d3.format(".2s")(d.value)+'</div>';
 	    		  nvtooltip.show([left, top], content);
 	    	  }
@@ -660,13 +791,13 @@ function loadScatterPlotMatrix(data)
 	  xAxis.tickSize(size * n);
 	  yAxis.tickSize(-size * n);
 
-	  var brush = d3.svg.brush()
+	  /*var brush = d3.svg.brush()
 	      .x(x)
 	      .y(y)
 	      .on("brushstart", brushstart)
 	      .on("brush", brushmove)
 	      .on("brushend", brushend);
-
+	 */
 	  var svgparent = d3.select("#chart").append("svg")
 			  .attr("width", size * n + padding + legendspace)
 			  .attr("height", size * n + padding + legendspace)
@@ -708,7 +839,7 @@ function loadScatterPlotMatrix(data)
 	      .attr("dy", ".71em")
 	      .text(function(d) { return d.x; });
 
-	  cell.call(brush);
+	  //cell.call(brush);
 
 	  function plot(p) {
 	    var cell = d3.select(this);
@@ -733,7 +864,7 @@ function loadScatterPlotMatrix(data)
 	        .on("mouseover", function(d){
 	        	var left = event.clientX,
 	  	          top = event.clientY + 15;
-	        	var content = d.category
+	        	var content = d.title
 	        	nvtooltip.show([left, top], content);
 	        })
 	        .on("mouseout", function() {
@@ -797,4 +928,26 @@ function loadScatterPlotMatrix(data)
 	    .attr("height", 15)
 	    .style("text-anchor", "end")
 	    .text(function(d) { return d; });
+}
+
+function leastSquares(xSeries, ySeries) {
+	var reduceSumFunc = function(prev, cur) { return prev + cur; };
+	
+	var xBar = xSeries.reduce(reduceSumFunc) * 1.0 / xSeries.length;
+	var yBar = ySeries.reduce(reduceSumFunc) * 1.0 / ySeries.length;
+
+	var ssXX = xSeries.map(function(d) { return Math.pow(d - xBar, 2); })
+		.reduce(reduceSumFunc);
+	
+	var ssYY = ySeries.map(function(d) { return Math.pow(d - yBar, 2); })
+		.reduce(reduceSumFunc);
+		
+	var ssXY = xSeries.map(function(d, i) { return (d - xBar) * (ySeries[i] - yBar); })
+		.reduce(reduceSumFunc);
+		
+	var slope = ssXY / ssXX;
+	var intercept = yBar - (xBar * slope);
+	var rSquare = Math.pow(ssXY, 2) / (ssXX * ssYY);
+	
+	return [slope, intercept, rSquare];
 }

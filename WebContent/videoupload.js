@@ -3,7 +3,7 @@ var MONTHLY_PERIOD_VALUE = 30, QUARTERLY_PERIOD_VALUE = 90, HALF_YEARLY_PERIOD_V
 var period = MONTHLY_PERIOD;
 var response, data = [];
 var monthly = [], quarterly = [], halfyearly = [], yearly = [], startdate, enddate, statistics;
-
+var selectedPeriod = "M"
 function addDays(date, days) {
 	var result = new Date(date);
 	result.setDate(result.getDate() + days);
@@ -11,6 +11,7 @@ function addDays(date, days) {
 }
 
 function monthlyTimePeriodClick() {
+	selectedPeriod = "M"
 	$("#divTimeFrame input").css('background-color', 'white')
 	$('#monthlyButton').css('background-color', '#ffa500')
 	period = MONTHLY_PERIOD;
@@ -19,6 +20,7 @@ function monthlyTimePeriodClick() {
 }
 
 function quarterlyTimePeriodClick() {
+	selectedPeriod = "Q"
 	$("#divTimeFrame input").css('background-color', 'white')
 	$('#quarterlyButton').css('background-color', '#ffa500')
 	period = QUARTERLY_PERIOD;
@@ -27,6 +29,7 @@ function quarterlyTimePeriodClick() {
 }
 
 function halfYearlyTimePeriodClick() {
+	selectedPeriod = "H"
 	$("#divTimeFrame input").css('background-color', 'white')
 	$('#halfyearlyButton').css('background-color', '#ffa500')
 	period = HALF_YEARLY_PERIOD;
@@ -35,6 +38,7 @@ function halfYearlyTimePeriodClick() {
 }
 
 function yearlyTimePeriodClick() {
+	selectedPeriod = "Y"
 	$("#divTimeFrame input").css('background-color', 'white')
 	$('#yearlyButton').css('background-color', '#ffa500')
 	period = YEARLY_PERIOD
@@ -81,7 +85,15 @@ function videoCount(respText) {
 		else
 			yearly = stats.count;
 	}
-	data = monthly;
+	if (selectedPeriod == 'M')
+		data = monthly;
+	else if (selectedPeriod == 'Y')
+		data = yearly;
+	else if (selectedPeriod == 'H')
+		data = halfyearly;
+	else
+		data = quarterly;
+			
 	drawVideoCountGraph();
 }
 
