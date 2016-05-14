@@ -1,4 +1,5 @@
 var selectedTrend = 'views'
+var combinedOrParallel = 'combined' 
 function slider(min, max,step, margin)
 {
 	var range = document.getElementById('range');
@@ -54,31 +55,53 @@ function channelTrend(obj)
 		$("#channeltrend").css('display','none');
 		$("#trendFrame").css('display','none');
 		$("#categorytrend").css('display','block');
-		//loadCategoryView(data)
-		$("#combinedview").css('backgroundColor', '#ffa500');
-		$("#parallelview").css('backgroundColor', 'white');
-		loadCategoryView(data)
+		if (combinedOrParallel == 'combined')
+		{
+			$("#combinedview").css('backgroundColor', '#ffa500');
+			$("#parallelview").css('backgroundColor', 'white');
+			loadCategoryView(data)
+		}
+		else
+		{
+			$("#combinedview").css('backgroundColor', 'white');
+			$("#parallelview").css('backgroundColor', '#ffa500');
+			loadParallelCoordinates(data)
+		}
+
 		$("#combinedview").click(function(){
 			$("#combinedview").css('backgroundColor', '#ffa500');
 			$("#parallelview").css('backgroundColor', 'white');
+			combinedOrParallel = 'combined'
 			loadCategoryView(data);
 		})
 		$("#parallelview").click(function(){
 			$("#combinedview").css('backgroundColor', 'white');
 			$("#parallelview").css('backgroundColor', '#ffa500');
+			combinedOrParallel = 'parallel'
 			loadParallelCoordinates(data)
 		})
 	}
 	else
 	{
 		resetbuttons(selectedTrend);
-		if (selectedTrend == 'Video Quality')
-			quadrantchart(data.statistics);
+		if (combinedOrParallel == 'combined')
+		{
+			if (selectedTrend == 'Video Quality')
+				quadrantchart(data.statistics);
+			else
+			{
+				loadChannelViewBetter(data.statistics, selectedTrend);
+			}
+		}
 		else
 		{
-			loadChannelViewBetter(data.statistics, selectedTrend);
+			$("#trendFrame").css('display','none');
+			$("#combinedviewchannel").css('backgroundColor', 'white');
+			$("#parallelviewchannel").css('backgroundColor', '#ffa500');
+			loadParallelCoordinates(data.statistics)
 		}
 		$("#combinedviewchannel").click(function(){
+			combinedOrParallel = 'combined'
 			$("#trendFrame").css('display','block');
 			$("#combinedviewchannel").css('backgroundColor', '#ffa500');
 			$("#parallelviewchannel").css('backgroundColor', 'white');
@@ -90,6 +113,7 @@ function channelTrend(obj)
 			}
 		})
 		$("#parallelviewchannel").click(function(){
+			combinedOrParallel = 'parallel'
 			$("#trendFrame").css('display','none');
 			$("#combinedviewchannel").css('backgroundColor', 'white');
 			$("#parallelviewchannel").css('backgroundColor', '#ffa500');
@@ -263,7 +287,7 @@ function loadChannelViewBetter(dataoriginal, selView)
     	        left = e.pos[0] + offset.left,
     	        top = e.pos[1] + offset.top;
 
-    	    var content = '<h3>' + e.series.label + '</h3>' +
+    	    var content = '<h3>' + e.point[2] + '</h3>' +
     	                  '<p>' +
     	                  '<iframe id="video" width="400" height="200" src="https://www.youtube.com/embed/'+e.point[3]+'?autoplay=1&rel=0&wmode=Opaque&enablejsapi=1" frameborder="0"></iframe>'+
     	                  '</p>';
@@ -492,7 +516,18 @@ function loadParallelCoordinates(data)
 	    .selectAll("path")
 	      .data(data)
 	    .enter().append("path")
-	      .attr("d", path);
+	      .attr("d", path).on("mouseover", function(d){
+	    	  var offset = $('#chart').offset(), // { left: 0, top: 0 }
+  	          left = event.clientX,
+  	          top = event.clientY;
+	    	  var txt = '';
+	    	  if (d.title)
+	    		  txt = d.title
+	    	  else
+	    		  txt = d.videotitle
+	    	  var content = '<h3>' + txt + '</h3>';
+	    	  nvtooltip.show([left, top], content);
+	      }).on("mouseout", function (){nvtooltip.cleanup();});
 	
 	  // Add a group element for each dimension.
 	  var g = svg.selectAll(".dimension")

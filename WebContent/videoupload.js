@@ -89,6 +89,8 @@ function drawVideoCountGraph() {
 	$("#chart").html("");
 	$("#trendFrame").css('display', 'none');
 	$("#divTimeFrame").css('display', "block");
+	$("#categorytrend").css('display', "none");
+	$("#channeltrend").css('display', "none");
 	var margin = {
 		top : 20,
 		right : 20,

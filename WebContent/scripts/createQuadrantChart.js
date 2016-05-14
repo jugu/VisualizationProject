@@ -258,7 +258,7 @@ items.append("circle")
 	 var offset = $('#chart').offset(), // { left: 0, top: 0 }
      left = x(d.x) + offset.left,
      top = y(d.y) + offset.top;
-	 var content =  '<iframe id="video" width="400" height="200" src="https://www.youtube.com/embed/'+d.url+'?autoplay=1" frameborder="0"></iframe>'
+	 var content =  '<h3>'+d.label+'</h3><iframe id="video" width="400" height="200" src="https://www.youtube.com/embed/'+d.url+'?autoplay=1" frameborder="0"></iframe>'
 	nvtooltip.show([left, top], content);
 }).on('mouseout', function (d) {
 	stopVideo($('#video'));
