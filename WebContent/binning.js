@@ -270,8 +270,7 @@ function loadChannelViewNew(dataoriginal, selView)
    var chart = d3.select('#chart')
 	.append('svg:svg')
 	.attr('width', width + margin.right + margin.left)
-	.attr('height', height + margin.top + margin.bottom)
-	.attr('class', 'chart')
+	.attr('height', height + margin.top + margin.bottom);
 
    var main = chart.append('g')
 	.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
