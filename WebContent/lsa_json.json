@@ -15,11 +15,6 @@
           "address": ""
         },
         {
-          "name": "just",
-          "address": "",
-          "note": ""
-        },
-        {
           "name": "laughs",
           "address": "",
           "note": ""
@@ -36,11 +31,6 @@
         },
         {
           "name": "tonight",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "videos",
           "address": "",
           "note": ""
         },
@@ -93,14 +83,6 @@
         {
           "name": "history",
           "address": ""
-        },
-        {
-          "name": "natural",
-          "address": ""
-        },
-        {
-          "name": "tourism",
-          "address": ""
         }
       ]
     },
@@ -130,14 +112,6 @@
         },
         {
           "name": "class",
-          "address": ""
-        },
-        {
-          "name": "motor",
-          "address": ""
-        },
-        {
-          "name": "auto",
           "address": ""
         },
         {
@@ -175,14 +149,6 @@
           "address": ""
         },
         {
-          "name": "def",
-          "address": ""
-        },
-        {
-          "name": "syco",
-          "address": ""
-        },
-        {
           "name": "records",
           "address": ""
         },
@@ -217,14 +183,6 @@
           "address": ""
         },
         {
-          "name": "skynews",
-          "address": ""
-        },
-        {
-          "name": "video",
-          "address": ""
-        },
-        {
           "name": "science",
           "address": ""
         },
@@ -247,19 +205,11 @@
       "description": "",
       "children": [
         {
-          "name": "ted",
-          "address": ""
-        },
-        {
           "name": "education",
           "address": ""
         },
         {
           "name": "science",
-          "address": ""
-        },
-        {
-          "name": "ed",
           "address": ""
         },
         {

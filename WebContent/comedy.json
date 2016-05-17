@@ -6,15 +6,6 @@
       "description": "",
       "children": [
         {
-          "name": "night",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "late",
-          "address": ""
-        },
-        {
           "name": "latenight",
           "address": "",
           "note": ""
@@ -71,14 +62,6 @@
           "note": ""
         },
         {
-          "name": "chtv",
-          "address": ""
-        },
-        {
-          "name": "amir",
-          "address": ""
-        },
-        {
           "name": "jake",
           "address": ""
         },
@@ -121,15 +104,7 @@
           "address": ""
         },
         {
-          "name": "stephen",
-          "address": ""
-        },
-        {
           "name": "music",
-          "address": ""
-        },
-        {
-          "name": "video",
           "address": ""
         },
         {
@@ -167,10 +142,6 @@
           "address": ""
         },
         {
-          "name": "justforlaughs",
-          "address": ""
-        },
-        {
           "name": "funniest",
           "address": ""
         },
@@ -184,10 +155,6 @@
         },
         {
           "name": "comic",
-          "address": ""
-        },
-        {
-          "name": "justforlaughstv",
           "address": ""
         },
         {
@@ -210,14 +177,6 @@
         },
         {
           "name": "key",
-          "address": ""
-        },
-        {
-          "name": "daily",
-          "address": ""
-        },
-        {
-          "name": "nightly",
           "address": ""
         },
         {

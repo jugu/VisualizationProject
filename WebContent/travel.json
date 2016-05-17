@@ -43,16 +43,6 @@
           "name": "pepper",
           "address": "",
           "note": ""
-        },
-        {
-          "name": "hartman",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "sawyer",
-          "address": "",
-          "note": ""
         }
       ]
     },
@@ -79,15 +69,7 @@
           "address": ""
         },
         {
-          "name": "video",
-          "address": ""
-        },
-        {
           "name": "deadly",
-          "address": ""
-        },
-        {
-          "name": "david",
           "address": ""
         },
         {
@@ -110,10 +92,6 @@
       "children": [
         {
           "name": "tourism",
-          "address": ""
-        },
-        {
-          "name": "channel",
           "address": ""
         },
         {
@@ -143,10 +121,6 @@
         {
           "name": "culture",
           "address": ""
-        },
-        {
-          "name": "new",
-          "address": ""
         }
       ]
     },
@@ -154,10 +128,6 @@
       "name": "BBC Travel Show",
       "description": "",
       "children": [
-        {
-          "name": "travel",
-          "address": ""
-        },
         {
           "name": "india",
           "address": ""
@@ -189,10 +159,6 @@
         {
           "name": "shopping",
           "address": ""
-        },
-        {
-          "name": "cup",
-          "address": ""
         }
       ]
     },
@@ -202,10 +168,6 @@
       "children": [
         {
           "name": "food",
-          "address": ""
-        },
-        {
-          "name": "korea",
           "address": ""
         },
         {
@@ -234,10 +196,6 @@
         },
         {
           "name": "peruvian",
-          "address": ""
-        },
-        {
-          "name": "peru",
           "address": ""
         }
       ]

@@ -6,15 +6,6 @@
       "description": "",
       "children": [
         {
-          "name": "video",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "youtube",
-          "address": ""
-        },
-        {
           "name": "documentary",
           "address": "",
           "note": ""
@@ -71,14 +62,6 @@
           "note": ""
         },
         {
-          "name": "mag",
-          "address": ""
-        },
-        {
-          "name": "com",
-          "address": ""
-        },
-        {
           "name": "war",
           "address": ""
         },
@@ -109,15 +92,7 @@
       "description": "",
       "children": [
         {
-          "name": "skynews",
-          "address": ""
-        },
-        {
           "name": "country",
-          "address": ""
-        },
-        {
-          "name": "tv",
           "address": ""
         },
         {
@@ -155,15 +130,7 @@
       "description": "",
       "children": [
         {
-          "name": "tube",
-          "address": ""
-        },
-        {
           "name": "trace",
-          "address": ""
-        },
-        {
-          "name": "dominguez",
           "address": ""
         },
         {
@@ -210,14 +177,6 @@
         },
         {
           "name": "nyse",
-          "address": ""
-        },
-        {
-          "name": "video",
-          "address": ""
-        },
-        {
-          "name": "com",
           "address": ""
         },
         {

@@ -6,11 +6,6 @@
       "description": "",
       "children": [
         {
-          "name": "audio",
-          "address": "",
-          "note": ""
-        },
-        {
           "name": "records",
           "address": ""
         },
@@ -36,11 +31,6 @@
         },
         {
           "name": "holiday",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "vevo",
           "address": "",
           "note": ""
         },
@@ -75,19 +65,11 @@
           "address": ""
         },
         {
-          "name": "roc",
-          "address": ""
-        },
-        {
           "name": "love",
           "address": ""
         },
         {
           "name": "new",
-          "address": ""
-        },
-        {
-          "name": "video",
           "address": ""
         },
         {
@@ -117,10 +99,6 @@
           "address": ""
         },
         {
-          "name": "rca",
-          "address": ""
-        },
-        {
           "name": "records",
           "address": ""
         },
@@ -141,10 +119,6 @@
           "address": ""
         },
         {
-          "name": "1d",
-          "address": ""
-        },
-        {
           "name": "best",
           "address": ""
         }
@@ -155,15 +129,7 @@
       "description": "",
       "children": [
         {
-          "name": "llc",
-          "address": ""
-        },
-        {
           "name": "music",
-          "address": ""
-        },
-        {
-          "name": "video",
           "address": ""
         },
         {
@@ -202,14 +168,6 @@
       "children": [
         {
           "name": "pop",
-          "address": ""
-        },
-        {
-          "name": "video",
-          "address": ""
-        },
-        {
-          "name": "official",
           "address": ""
         },
         {

@@ -15,17 +15,7 @@
           "address": ""
         },
         {
-          "name": "hangout",
-          "address": "",
-          "note": ""
-        },
-        {
           "name": "eduonair",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "hangouts",
           "address": "",
           "note": ""
         },
@@ -79,14 +69,6 @@
           "address": ""
         },
         {
-          "name": "dotsub",
-          "address": ""
-        },
-        {
-          "name": "khan",
-          "address": ""
-        },
-        {
           "name": "physics",
           "address": ""
         },
@@ -108,10 +90,6 @@
       "name": "Discovery Education",
       "description": "",
       "children": [
-        {
-          "name": "den",
-          "address": ""
-        },
         {
           "name": "science",
           "address": ""
@@ -137,10 +115,6 @@
           "address": ""
         },
         {
-          "name": "3m",
-          "address": ""
-        },
-        {
           "name": "webinar",
           "address": ""
         },
@@ -154,10 +128,6 @@
       "name": "TED-Ed",
       "description": "",
       "children": [
-        {
-          "name": "tedx",
-          "address": ""
-        },
         {
           "name": "education",
           "address": ""
@@ -187,10 +157,6 @@
           "address": ""
         },
         {
-          "name": "language",
-          "address": ""
-        },
-        {
           "name": "chemistry",
           "address": ""
         }
@@ -200,10 +166,6 @@
       "name": "SciShow",
       "description": "",
       "children": [
-        {
-          "name": "sci",
-          "address": ""
-        },
         {
           "name": "biology",
           "address": ""
@@ -234,10 +196,6 @@
         },
         {
           "name": "chemistry",
-          "address": ""
-        },
-        {
-          "name": "quick",
           "address": ""
         }
       ]

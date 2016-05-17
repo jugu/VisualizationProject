@@ -6,15 +6,6 @@
       "description": "",
       "children": [
         {
-          "name": "automobile",
-          "address": "",
-          "note": ""
-        },
-        {
-          "name": "company",
-          "address": ""
-        },
-        {
           "name": "scuderia",
           "address": "",
           "note": ""
@@ -71,10 +62,6 @@
           "note": ""
         },
         {
-          "name": "car",
-          "address": ""
-        },
-        {
           "name": "design",
           "address": ""
         },
@@ -84,10 +71,6 @@
         },
         {
           "name": "garde",
-          "address": ""
-        },
-        {
-          "name": "cars",
           "address": ""
         },
         {
@@ -114,14 +97,6 @@
         },
         {
           "name": "auto",
-          "address": ""
-        },
-        {
-          "name": "cars",
-          "address": ""
-        },
-        {
-          "name": "car",
           "address": ""
         },
         {
@@ -154,14 +129,6 @@
       "name": "Motor Trend Channel",
       "description": "",
       "children": [
-        {
-          "name": "auto",
-          "address": ""
-        },
-        {
-          "name": "news",
-          "address": ""
-        },
         {
           "name": "review",
           "address": ""
@@ -225,15 +192,7 @@
           "address": ""
         },
         {
-          "name": "cars",
-          "address": ""
-        },
-        {
           "name": "new",
-          "address": ""
-        },
-        {
-          "name": "m3",
           "address": ""
         },
         {
